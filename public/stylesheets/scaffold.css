@@ -1,0 +1,87 @@
+body {
+    font-family:Ubuntu;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+    min-width: 900px;
+}
+
+b{font-size: 100%;}
+em{color: red;}
+
+h4{
+   text-align:center;
+   border:1px solid;
+   color:white;
+   background-color:blue;
+  }
+
+#topsection{
+background: #CCCCCC;
+height: 72px; /*Height of top section*/
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+}
+
+#contentcolumn{
+margin: 0 15% 0 20%; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+border:0px solid;
+}
+
+#leftcolumn{
+float: left;
+width: 20%; /*Width of left column in percentage*/
+margin-left: -100%;
+}
+
+#rightcolumn{
+float: left;
+width: 15%; /*Width of right column in pixels*/
+margin-left: -15%; /*Set margin to that of -(RightColumnWidth)*/
+}
+
+#footer {
+clear: left;
+width: 100%;
+background: silver;
+color: #000;
+text-align: center;
+padding: 4px 0;
+#position: relative;
+margin-top: -200px; /* negative value of footer height */
+height: 150px;
+clear:both; 
+}
+
+
+#footer {
+ 
+
+
+/** Tag Cloud */
+
+ .css1
+   { font-size: 1.0em; }
+ .css2
+   { font-size: 1.2em; }
+ .css3 
+   { font-size: 1.4em; }
+ .css4
+   { font-size: 1.6em; }
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top:0px;
+}
+
+
+

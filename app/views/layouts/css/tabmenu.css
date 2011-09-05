@@ -1,0 +1,230 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.tab-container {width: 688px; margin: 10px 0px 0px 0px ;}
+
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height:27px;
+	width: 50%;
+	margin-left:18px;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height:27px;
+	line-height:27px;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs li a {
+	text-decoration: none;
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:left top;
+	color: #656565;
+	display: block;
+	font-size:11px;
+	padding-left:20px;
+	font-weight:bold;
+	outline: none;
+	margin-left:15px;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+
+ul.tabs li a span{ 
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:right -27px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+ul.tabs li a:hover {
+	text-decoration: none;
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:left -54px;
+	color: #343434;
+	display: block;
+	padding-left:20px;
+	outline: none;
+	margin-left:15px;
+	font-weight:bold;
+}
+
+ul.tabs li a:hover span{ 
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+
+html ul.tabs li.active a{
+	text-decoration: none;
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:left -54px;
+	color: #343434;
+	display: block;
+	padding-left:20px;
+	outline: none;
+	font-weight:bold;
+}
+
+
+html ul.tabs li.active span{ 
+	background-image:url(../images/tabmenu.png);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+.tab_container {
+	clear: both;
+	float: left; 
+	background-color:#F5F5F5;
+	width:636px;
+	padding:26px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	behavior: url(border-radius.htc);
+	color:#676767;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	height:310px;
+	overflow:hidden;
+}
+
+.tab_content {
+	height:380px;
+}
+
+
+/*INNER TAB MENU*/
+
+
+
+
+ul.tabs-inner {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height:27px;
+	width: 50%;
+	margin-left:18px;
+}
+ul.tabs-inner li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height:27px;
+	line-height:27px;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs-inner li a {
+	text-decoration: none;
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:left top;
+	color: #656565;
+	display: block;
+	font-size:11px;
+	padding-left:20px;
+	font-weight:bold;
+	outline: none;
+	margin-left:15px;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+
+ul.tabs-inner li a span{ 
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:right -27px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+ul.tabs-inner li a:hover {
+	text-decoration: none;
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:left -54px;
+	color: #343434;
+	display: block;
+	padding-left:20px;
+	outline: none;
+	margin-left:15px;
+	font-weight:bold;
+}
+
+ul.tabs-inner li a:hover span{ 
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+
+html ul.tabs-inner li.active a{
+	text-decoration: none;
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:left -54px;
+	color: #343434;
+	display: block;
+	padding-left:20px;
+	outline: none;
+	font-weight:bold;
+}
+
+
+html ul.tabs-inner li.active span{ 
+	background-image:url(../images/inner-tab-menu-button.png);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+	display:block;
+	padding-right:20px;
+	
+}
+
+.tab_container {
+	clear: both;
+	float: left; 
+	background-color:#F5F5F5;
+	width:636px;
+	padding:26px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	behavior: url(border-radius.htc);
+	color:#676767;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	height:310px;
+	overflow:hidden;
+}
+
+.tab_content {
+	height:380px;
+}
+
+
+

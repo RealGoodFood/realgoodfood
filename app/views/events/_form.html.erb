@@ -1,0 +1,80 @@
+<head>
+ <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
+<%= csrf_meta_tag %>
+
+<style type="text/css">
+    .my_div {
+        width: 100px;
+        height: 100px;
+    }
+    #swap { background: red; }
+    #potluck { background: green; }
+    #collaboration_cooking { background: blue; }
+</style>
+
+</head>
+<body>
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :'Add Event Category' %><br />
+    <%= f.collection_select :event_category_id, EventCategory.find(:all), :id , :name %></option>
+  </div>
+<div id="swap" class="my_div"></div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.label :event_description %><br />
+    <%= f.text_area :event_description, :size => "55x10" %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.label :event_starting_on %><br />
+    <%= f.date_select :event_starting_on %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.label :event_ending_on %><br />
+    <%= f.date_select 'event_ending_on' %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.label :'Please Type The Event Address' %><br />
+    <%= f.text_area :address, :size => '55x3' %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.label :attending %>
+    <%= f.check_box :attending %>
+    <%= label_tag :not_attending %>
+    <%= check_box_tag :attending %>
+  </div>
+	<br />
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+<%= f.submit %>
+  <div class="actions">
+      <div>
+            <a href="/events" class="button-save-cancel"><span>Save</span></a>
+            <a href="/events" class="button-save-cancel"><span>Cancel</span></a>
+      </div>
+
+  </div>
+<br />
+<% end %>
+</body>

@@ -1,0 +1,8 @@
+<h1>Listing events</h1>
+<p>
+<b><%= link_to 'Create New Event', new_event_path %></b>
+</p>
+<% @events.each do |event| %>
+  <%= link_to gmaps4rails(@json),event %>
+<% end %>
+<%= will_paginate @event %>

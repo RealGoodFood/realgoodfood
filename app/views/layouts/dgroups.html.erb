@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+       <%= yield :head %> 
+       <title>
+          Real Good Food
+       </title>
+       <%= stylesheet_link_tag 'scaffold' %>
+       <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
+    <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom.css' %>
+
+</head>
+
+<body>
+<div id="maincontainer">
+	<div id="topsection">
+		<div class="innertube">
+			<%= render :partial => 'shared/global_links' %>
+				<div id="tabs">
+					<%= tabs %>
+					<%= subtabs %> 
+				</div>
+			</div>
+	</div>
+</div>
+
+<div id="contentwrapper">
+	<div id="contentcolumn">
+		<div class="innertube">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+                        <br /><%= yield %>
+		</div>
+	</div>
+</div>
+<div id="leftcolumn">
+	<div class="innertube">
+          <%= render :partial => "rightbar" %>
+		</div>
+</div>
+
+
+<br />
+<div id="rightcolumn">
+	<div class="innertube">
+          <%= render :partial => "sidebar" %>
+        </div>
+</div>
+

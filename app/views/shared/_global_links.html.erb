@@ -1,0 +1,14 @@
+<% if signed_in? %>
+ 	<strong><%= current_user.email %></strong> | 
+	<%= link_to "My Account", edit_user_registration_path %> | 
+	<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+    <!--
+	<%= link_to "Dashboard", root_url %> |
+    -->
+<% else %>
+        <%= link_to 'sign_up', new_user_registration_path, :class => "register_link" %> |
+	<%= link_to "Log in", user_session_path %>
+<% end %>
+
+    | <%= link_to 'English', url_for( params.merge( {:locale => 'en'} ) ) %>
+    | <%= link_to 'Portuguese', url_for( params.merge( {:locale => 'pt-BR'} ) ) %>

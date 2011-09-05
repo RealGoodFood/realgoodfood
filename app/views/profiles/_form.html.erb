@@ -1,0 +1,56 @@
+<head>
+<style type="text/css">
+div{background-color:#ffffff;}
+.g{font-size:12px;border:1px solid red;}
+</style>
+</head>
+
+<body>
+
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table id="hor-minimalist-b" >
+<tr>
+   <div class="field">
+    <td><b><%= f.label :first_name %></b><br />
+    <%= f.text_field :first_nams, default_text("Enter your First_name") %></td></tr>
+  </div>
+<tr>
+  <div class="field">
+    <td><b><%= f.label :last_name %></b><br />
+    <%= f.text_field :last_name, default_text("Enter your Last_name") %></td></tr>
+  </div>
+
+<tr><td>
+  <div class="field">
+   <div class="g" style="position:absolute;top:3px;right:-1px;height:100%;width:5px;"></div>
+      <b><%= f.label :'Food_Preference:' %></b><br />
+        <% for category in Value.find(:all) %>
+     <%= check_box_tag( 'profile[value_ids][]',  category.id,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+
+           <%= category.name %>
+   <% end %>  </div>
+</div>
+</td></tr>
+<tr>
+<div class ="field">
+   <td><b><%= f.label :'Cooking interests' %></b><br /> 
+   <%= f.text_area :about_me, :size=>'75x6',  :class => "mceEditor" %></td></tr>
+</div>
+
+  <div class="actions">
+   <tr><td><%= f.submit %></td></tr>
+  </div>
+
+<% end %>
+</table>

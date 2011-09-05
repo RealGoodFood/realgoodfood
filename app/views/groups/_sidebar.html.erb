@@ -1,0 +1,9 @@
+<h4> Upcoming Events </h4>
+<p>
+<div style = "border:0px solid;	font-size:10px">
+   <% Event.where(:created_at => 2.days.ago .. 2.days.from_now).each do |e| %>
+   <h3><b><%= link_to e.name, e %></b><br />
+   Starting On:  <u><%= e.event_starting_on %></u></h3><br />
+<% end %> 
+</div>
+</p>

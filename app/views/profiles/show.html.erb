@@ -1,0 +1,14 @@
+  <h1><u><%= @profile.first_nams %> <%= @profile.last_name %></u></h1>
+
+  <li><%= link_to 'my comments', comments_path %></li>
+
+<p>
+  <h6>Abount me:</h6><br />
+  <b>"<%= @profile.about_me %>"</b>
+</p>
+
+<% if @profile.user_id == current_user.id %>
+<p>
+  <%= link_to 'Edit', edit_profile_path(@profile) %> |
+  <%= link_to 'Back', profiles_path %></p>
+<% end %>

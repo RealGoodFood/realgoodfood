@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+       <%= yield :head %> 
+   <title>Real Good Food</title>
+       <%= stylesheet_link_tag 'scaffold' %>
+       <%= javascript_include_tag :defaults %>
+</head>
+
+<body>
+  <div id="header">
+    <div id="global_links">
+      <%= render :partial => 'shared/global_links' %>
+    </div>
+      <h1>REAL GOOD FOOD</h1>
+    </div>
+      <div id="tabs">
+        <%= tabs %>
+        <%= subtabs %> 
+     </div>
+
+  <div id="main">
+    <div id="left">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <div id="screen">
+        <%= yield %>
+      </div>
+  </div>
+</div>
+
+<div id="right" style="font-size: 10px">
+<table><td>
+      <h2 style = "background-color:lightblue;font-weight:bolder"> Values </h2>
+       <% Value.find(:all).each do |v| %>
+        <tr>
+          <td style = color:blue><%= link_to v.name, v %></td>
+        </tr>
+      <% end %>
+</td>
+<div id="left" style="font-size: 10px">
+<td>
+      <h2 style = background-color:lightblue> Eat By Date </h2>
+       <% EatByDate.find(:all).each do |v| %>
+        <tr><td><%= link_to v.name, v %></td></tr>
+      <% end %>
+</td>
+<td>
+      <h2 style = background-color:lightblue> Food Categories </h2>
+       <% FoodCategory.find(:all).each do |v| %>
+        <tr><td><%=link_to v.name, v %></td></tr>
+      <% end %>
+</td>
+</table>
+</div>
+      <%= render :partial => 'shared/footer' %>
+ </body>
+      <%= yield :scripts %>
+</html>
