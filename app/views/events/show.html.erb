@@ -1,4 +1,31 @@
+<%= image_tag @event.photo.url %>
+<br />
 
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div>
+        <p class="mb10"> <a href="javascript:faq.sweepToggle('contract')" class="expandlink">Contract All</a> | <a href="javascript:faq.sweepToggle('expand')" class="expandlink">Expand All</a>
+        <div class="eg-bar">
+        
+        <table width="96%" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="11%"><span id="faq1-title" class="iconspan1"><img src="../images/minus.gif" /></span></td>
+    <td width="89%">Listings Under this event</td>
+<% @event.listings.each do |f| %>
+      <div style="position:relative;
+                  font-size:10px;
+                  text-decoration:underline; 
+                  visibility:visible; 
+                  background-color:#FFFFCC; 
+                  layer-backgroundcolor:#FFFFCC; 
+                  border:1px none #000000; 
+                  z-index:1"> 
+  <p><%= f.title %></p>
+</div>
+<% end %>
+  </tr></table>
+</div></div></div></div></div>
 <p>
   <b>Name:</b>
   <%= @event.name %>

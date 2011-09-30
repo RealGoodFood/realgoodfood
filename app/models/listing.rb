@@ -1,5 +1,22 @@
 class Listing < ActiveRecord::Base
 
+has_attached_file :photo,
+     :styles => {
+       :thumb=> "60x60#",
+       :small  => "400x400>" }
+
+#Mapping Google Maps =====================================================================================
+acts_as_gmappable
+
+ def gmaps4rails_address
+    address
+ end
+
+ def gmaps4rails_infowindow
+  "<h4>#{title}</h4>" << "<h4>#{address}</h4>"
+ end
+
+
 #Validation =====================================================================================
 
  #validates_presence_of :title
@@ -17,14 +34,16 @@ class Listing < ActiveRecord::Base
 
 # linking or joining of model 
 
- belongs_to :user
- belongs_to :food_category
- has_many   :comments, :dependent => :destroy
- belongs_to :user
- belongs_to :profile
- belongs_to :eat_by_date
- belongs_to :location
- has_and_belongs_to_many :values
+ belongs_to 		  :user
+ belongs_to 		  :food_category
+ has_many   		  :comments, :dependent => :destroy
+ belongs_to 		  :user
+ belongs_to 	          :profile
+ belongs_to 		  :eat_by_date
+ belongs_to 		  :location
+ has_and_belongs_to_many  :values
+ has_and_belongs_to_many  :events
+
 
 #==================================================================================================
 

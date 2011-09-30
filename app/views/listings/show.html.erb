@@ -1,37 +1,56 @@
 <p>
+<% if @listing.photo.exists? then %>
+	<%= image_tag @listing.photo.url(:small) %>
+<% end %>
+</p><br />
+
+<p>
 <b>Title:</b>
 <%= @listing.title %>
-</p>
+</p><br />
 
 <p>
 <b>Food category:</b>
 <%= @listing.food_category.name %>
-</p>
+</p><br />
 
 <p>
 <b>Description:</b>
 <%= @listing.description %>
-</p>
+</p><br />
 
 <p>
 <b>Start date:</b>
 <%= @listing.start_date %>
-</p>
+</p><br />
 
 <p>
 <b>End date:</b>
 <%= @listing.end_date %>
-</p>
+</p><br />
 
-<table>
+<p>
+<b>Location:</b>
+<%= @listing.location.address %>
+</p><br />
+
 <b>Food type:</b><br />
 <% @listing.tags.each do |f| %>
-<tr>
-<td><%= f.name %></td>
-</tr>
+<br />
+      <div style="position:relative;
+                  font-size:13px;
+                  text-decoration:underline; 
+                  width:150px;
+                  visibility:visible; 
+                  background-color:#FFFFCC; 
+                  layer-backgroundcolor:#FFFFCC; 
+                  border:1px none #000000; 
+                  z-index:1"> 
+<p><%= f.name %></p>
+</div>
 <% end %>
-</table>
 
+<br />
 <p>
 <b>Availablity Duration:</b><br />
 <% if ( @listing.end_date - Date.today() ).to_i < 0 %>
@@ -39,51 +58,37 @@
 <% else %>
 <%= distance_of_time_in_words(Time.now, @listing.end_date +  50.minute) %></td>
 <% end %>
-</p>
+</p><br />
 
 <p>
 <b>Eat by date:</b>
 <%= @listing.eat_by_date.name %>
 </p>
 <hr />
+
 <h3>
-<% if @listing.user_id == current_user.id %>
+<% if can? :update, @listing %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
+<% end %>
+<% if can? :destroy, @listing %>
 <%= link_to 'Destroy', @listing, :confirm => 'Are you sure?', :method => :delete %> |
+<% end %>
 <a href="/listings/" class="button-save-cancel"><span>View All</span></a>
-<% else %>
-<%= link_to 'List All', listings_path %> 
-<% end %>
 </h3>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'dailyscience'; // required: replace example with your forum shortname
 
-</table>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 <br /><br />
-<table cellspacing='0' class="Design4">
-<% unless @listing.comments.empty? %>
-  <h2> 
-	<u><%= pluralize(@listing.comments.size, 'comment') %></u>
-  </h2>
-  
- <% for comment in @listing.comments %>
-
-<tr>
-  <thead>
-     <td><%= gravatar_image_tag(current_user.email.downcase,
-                                            :alt => current_user.email,
-                                            :class => 'gravatar',
-                                            :gravatar => {:size => 50}) %>
-
-      <strong style  = color:blue>
-         <%= h comment.user.email  %>
-     </strong>
-      <em>on <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %></em>
-    </td>
-</tr>
-    <td><%= simple_format comment.content %><hr /></td>
-  <% end %>
-<% if comment.user_id == current_user.id %>
-          <td>&nbsp;&nbsp;&nbsp;<%= link_to 'Edit', edit_comment_path(comment) %></td>
-  <% end %>
-<% end %>
-</table>
-<%= render :partial => 'comments/form' %>
+<%= gmaps4rails(@json) %>
+<br /><br />

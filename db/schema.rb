@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827083041) do
+ActiveRecord::Schema.define(:version => 20110924070252) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "event_category_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "listing_id"
+  end
+
+  create_table "events_listings", :id => false, :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "folders", :force => true do |t|
@@ -82,6 +94,10 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
     t.boolean  "gmaps"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "listings", :force => true do |t|
@@ -97,6 +113,13 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.string   "address"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "locations", :force => true do |t|
@@ -138,13 +161,31 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "first_nams"
-    t.string   "last_name"
-    t.integer  "value_id"
-    t.integer  "user_id"
+    t.string   "full_name"
+    t.text     "address_1"
+    t.text     "address_2"
+    t.integer  "contact_number"
+    t.string   "status"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.integer  "postal_address"
+    t.date     "date_of_birth"
     t.text     "about_me"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "taggings", :force => true do |t|
@@ -177,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "group_id"
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

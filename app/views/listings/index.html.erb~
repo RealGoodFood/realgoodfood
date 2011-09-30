@@ -1,0 +1,23 @@
+<h1>Listing listings</h1>
+
+<% @listings.each do |listing| %>
+   <div class="tabmenu-contain-main">
+    <div class="tabmenu-contain-image">
+      <img src="../images/event-logo.jpg" width="86" height="64" alt="event logo" />
+    </div>
+       <div class="tabmenu-contain-teaxright">
+         <h5><%=link_to listing.title, listing %></h5>
+         <strong><%= link_to listing.food_category.name, listing.food_category %>
+</b><br />
+       </div>
+</div>
+
+<% end %> 
+
+
+
+
+
+
+<h3><a href="/listings/new" class="button-save-cancel"><span>New Listing</span></a></h3>
+

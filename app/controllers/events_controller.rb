@@ -28,6 +28,7 @@ before_filter :authenticate_user!
   # GET /events/new.xml
   def new
     @event = Event.new
+    @listings = Listing.all
 
     respond_to do |format|
       format.html # new.html.erb

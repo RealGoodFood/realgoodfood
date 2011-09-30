@@ -1,21 +1,5 @@
-<head>
- <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
-<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
-<%= csrf_meta_tag %>
+<%= form_for(@event, :html => {:multipart => true}) do |f| %>
 
-<style type="text/css">
-    .my_div {
-        width: 100px;
-        height: 100px;
-    }
-    #swap { background: red; }
-    #potluck { background: green; }
-    #collaboration_cooking { background: blue; }
-</style>
-
-</head>
-<body>
-<%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -27,54 +11,72 @@
       </ul>
     </div>
   <% end %>
+
+
   <div class="field">
-    <%= f.label :'Add Event Category' %><br />
-    <%= f.collection_select :event_category_id, EventCategory.find(:all), :id , :name %></option>
-  </div>
-<div id="swap" class="my_div"></div>
+    <b><%= f.label :'Select Event Type' %></b><hr />
+    <%= f.collection_select :event_category_id, EventCategory.find(:all), :id , :name, {},
+                           {:onchange => "#{remote_function(:url  => {:action => "update_events"},
+                           :with => "'project_id='+value")}"} %><br/>
+ </div>
+<hr/>
+
   <div class="field">
-    <%= f.label :name %><br />
+    <b><%= f.label :name %></b><hr />
     <%= f.text_field :name %>
   </div>
 	<br />
   <div class="field">
-    <%= f.label :event_description %><br />
+    <b><%= f.label :event_description %></b><hr />
     <%= f.text_area :event_description, :size => "55x10" %>
   </div>
 	<br />
   <div class="field">
-    <%= f.label :event_starting_on %><br />
+    <b><%= f.label :event_starting_on %></b><hr />
     <%= f.date_select :event_starting_on %>
   </div>
 	<br />
   <div class="field">
-    <%= f.label :event_ending_on %><br />
-    <%= f.date_select 'event_ending_on' %>
+    <b><%= f.label :event_ending_on %></b><hr />
+    <%= f.date_select :event_ending_on %>
   </div>
 	<br />
   <div class="field">
-    <%= f.label :'Please Type The Event Address' %><br />
+    <b><%= f.label :'Please Type The Event Address' %></b><hr />
     <%= f.text_area :address, :size => '55x3' %>
   </div>
 	<br />
+
   <div class="field">
-    <%= f.label :attending %>
-    <%= f.check_box :attending %>
-    <%= label_tag :not_attending %>
-    <%= check_box_tag :attending %>
+   <b> Upload Event Image : </b><br />
+     <%= f.file_field :photo %>
   </div>
-	<br />
+       <br />
+
   <div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
-<%= f.submit %>
-  <div class="actions">
-      <div>
-            <a href="/events" class="button-save-cancel"><span>Save</span></a>
-            <a href="/events" class="button-save-cancel"><span>Cancel</span></a>
-      </div>
 
+  <div class="field">
+    <b><u><%= f.label :'Add Listings To Event' %></u></b><br />
+    <% Listing.find(:all).each do |listing| -%>
+               <div style="position:relative;
+                           font-size:10px;
+                           text-decoration:underline; 
+                           visibility:visible; 
+                           background-color:#FFFFCC; 
+                           layer-backgroundcolor:#FFFFCC; 
+                           border:1px none #000000; 
+                           z-index:1"> 
+
+    <p><%= check_box_tag('event[listing_list][]',  listing.title,:onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+        <%= listing.title -%></p>
+</div>
+        <% end %>
+
+</div><br />
+  <div class="field">
+<%= f.submit %>
   </div>
 <br />
 <% end %>
-</body>

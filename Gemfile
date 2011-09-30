@@ -12,11 +12,12 @@ gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'will_paginate'
 gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
-
-
-
-
-
+gem 'paperclip'
+gem "simple_form"  
+gem 'nokogiri'
+gem 'rmagick', :require => 'RMagick'
+gem 'acts_as_image_store', :git => 'git://github.com/mshibuya/acts_as_image_store.git'
+gem 'cancan'
 
 
 

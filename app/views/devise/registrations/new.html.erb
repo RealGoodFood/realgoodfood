@@ -1,22 +1,32 @@
-<h2>Sign up</h2>
+<h2>Registration New User</h2><hr/>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+<div class="field">
+  <b>*<%= f.label :email %></b><br />
+  <%= f.email_field :email, :placeholder=>"Enter Your Email Address" %>
+</div><br />
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+<div class="field">
+  <b>*<%= f.label :password %></b><br />
+  <%= f.password_field :password, :placeholder =>"Enter Password" %>
+</div><br />
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+<div class="field">
+  <b>*<%= f.label :password_confirmation %></b><br />
+  <%= f.password_field :password_confirmation, :placeholder =>"retype password" %>
+</div><br />
 
- <p><%= f.label :Group_Name %><br />
-  <%= f.collection_select :group_id, Group.find(:all), :id, :name %></p>
+<div class="field">
+ <b>*<%= f.label :Group_Name %></b><br />
+  <%= f.collection_select :role_id, Role.find(:all), :id, :name, :prompt=>"Select Role" %>
+</div><br />
 
 
-  <p><%= f.submit "Sign up" %></p>
+<div class="field">
+  <p><%= f.submit "Register" %></p>
+</div>
 <% end %>
-
+<br />
 <%= render :partial => "devise/shared/links" %>

@@ -1,23 +1,22 @@
-<h1>Listing listings</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Food category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>All listings</h1>
 
 <% @listings.each do |listing| %>
-  <tr>
-    <td><%=link_to listing.title, listing %></td>
-    <td><%= link_to listing.food_category.name, listing.food_category %></td>
-  </tr>
-<% end %>
-</table>
+       <div class="tabmenu-contain-main">
+       <div class="tabmenu-contain-image">
+         <% if listing.photo.exists? then %>
+          <%= image_tag listing.photo.url(:thumb) %> 
+         <% end %>
+       </div>
+       <div class="tabmenu-contain-teaxright">
+       <h3>            <%=link_to listing.title, listing %></h3>
+         <p>Category : <%= link_to listing.food_category.name, listing.food_category %></p>
+         <p>           <%= truncate listing.description %><%= link_to 'read_more' , listing %> </p>
+       </b><br />
+       </div>
+       </div>
+<% end %> 
 
-<br />
+<%= will_paginate @meal, :class => 'pagination ajax' %><br />
 
 <h3><a href="/listings/new" class="button-save-cancel"><span>New Listing</span></a></h3>
 

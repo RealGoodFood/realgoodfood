@@ -1,21 +1,24 @@
 RgfNew::Application.routes.draw do
-  get "mailbox/index"
+  resources :roles
+
+  get "dashboard/index"
+  #get "mailbox/index"
   #get "messages/show"
   #get "sent/index"
   #get "sent/show"
   get "events/update_events"
+  get "home/index"
+  get 'listings/autocomplete_food_category_name'
 
-  resources :sent
-  resources :mailbox, :collection => { :trash => :get }
 
  # resources :mailbox do 
  #   get :trash, :on => :collection
  # end
 
-  resources :messages, :member => { :reply => :get, :forward => :get, :reply_all => :get, :undelete => :put }
 
-
-
+  #resources :sent
+  #resources :mailbox, :collection => { :trash => :get }
+  #resources :messages, :member => { :reply => :get, :forward => :get, :reply_all => :get, :undelete => :put }
   resources :event_categories
   resources :groups
   resources :profiles
@@ -24,7 +27,7 @@ RgfNew::Application.routes.draw do
   resources :food_categories
   resources :eat_by_dates
   resources :values
-  
+  resources :comments
 
  resources :listings do
     get :autocomplete_food_category_name, :on => :collection
@@ -34,27 +37,25 @@ RgfNew::Application.routes.draw do
   end
  end
 
+  resources :posts do
+    resources :comments
+  end
+
 
   #devise_for :users
  # devise_for :users do 
  #    get 'logout' => 'devise/sessions#destroy'
  # end
 
-  devise_for :users do 
+   devise_for :users, :controllers => { :registrations => "registrations" } do
     get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+   end
 
-  resources :posts do
-    resources :comments
-  end
 
-  resources :comments
   #get "listings/search"	
   match 'listings/:id', :to => 'listings#search'
   match 'inbox', :to => 'mailbox#index'
   #match '/contact', :to => 'pages#contact'
-  get "home/index"
-  get 'listings/autocomplete_food_category_name'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -24,8 +24,7 @@ font-weight: normal;
 font-style: normal;
 }
 
-.mb10 { margin-bottom:10px; }
-.mt10 { margin-top:10px; }
+.mb10 { margin-bottom:10px; }.mt10 { margin-top:10px; }
 .p10 { padding:10px; }
 
 h1 { 

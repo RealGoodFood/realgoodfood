@@ -3,11 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Real Good Food</title>
-  <%= yield :head %> 
  <%= stylesheet_link_tag 'real-good-food.css','nivo-theme.css','nivo-slider.css','tabmenu.css' %>
- <%= javascript_include_tag :defaults %>
- <%= javascript_include_tag 'tabmenu.js','jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
+  <%= stylesheet_link_tag 'text-expand.css' %>
+ <%= javascript_include_tag 'tabmenu.js','jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js', 
+                            'rails.js', 'autocomplete-rails.js' %>
  <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom.css' %>
+ <%= javascript_include_tag :defaults %>
+ <%= csrf_meta_tag %>
+ <%= yield :head %>
 </head>
 
 <body>
@@ -110,10 +113,10 @@ $(document).ready(function() {
  <div class="tab_container">
 
  <div id="tab1" class="tab_content">
-  <% Event.find(:all).each do |e| %>
+<% @event.each do |e| %>
    <div class="tabmenu-contain-main">
     <div class="tabmenu-contain-image">
-      <img src="../images/event-logo.jpg" width="86" height="64" alt="event logo" />
+      <%= image_tag e.photo.url(:small) %>
     </div>
        <div class="tabmenu-contain-teaxright">
          <h5><%= link_to e.name, e %></h5>
@@ -123,36 +126,31 @@ $(document).ready(function() {
 </div>
 
 <% end %> 
-
-
     <div class="pagginginarea">
-       	    <a href="#" class="paging-text-sel">Prev</a>
-            <a href="#" class="paging-number-sel">1</a>
-            <a href="#" class="paging-number">2</a>
-            <a href="#" class="paging-number">3</a>
-            <a href="#" class="paging-number">4</a>
-            <a href="#" class="paging-number">5</a>
-            <a href="#" class="paging-number">6</a>
-            <a href="#" class="paging-number">7</a>
-            <a href="#" class="paging-number">8</a>
-            <a href="#" class="paging-number">9</a>
-            <a href="#" class="paging-number">10</a>
-            <a href="#" class="paging-text-next">Next</a>
-        </div>
+      <%= will_paginate @event, :class=>"paging-text-sel" %>
+    </div>
 
      </div>
 
       <div id="tab2" class="tab_content">
             <h2>Group</h2>
+   <div class="tabmenu-contain-main">
+    <div class="tabmenu-contain-image">
+      <img src="../images/event-logo.jpg" width="86" height="64" alt="event logo" />
+    </div>
+       <div class="tabmenu-contain-teaxright">
              <% Group.find(:all).each do |g| %>
-               <p><%= link_to g.name, g %></p>
+               <b><%= link_to g.name, g %></b><br/>
+               <strong>Where:</strong><b><%= g.location %></b><br />
+               <strong>Group Type:</strong><b><%= g.group_type %></b><br />
              <% end %>
         </div>
       </div>
 </div>
 
 </div>
-
+</div>
+</div>
     <div id="righ-container">
       <h3>Search New Good Food</h3>
       <div class="right-box-border">
@@ -167,11 +165,26 @@ $(document).ready(function() {
                    <img src="../images/search-icon-rightside.png" width="28" height="29" alt="search icon" /></a>
             </div>
           </div>
-          <div class="left"><img src="../images/google-map.jpg" width="231" height="201" alt="google map" /></div>
+
+          <div class="left">
+                  <iframe width="231" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small> 
+
+          </div>
         </div>
       </div>
       <div class="right-box-border">
-        <div class="right-box-main"> <img src="../images/facebook.jpg" width="231" height="244" alt="facebook" /></div>
+
+        <div class="right-box-main"> <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like-box" data-href="https://www.facebook.com/pages/Real-Good-Food/105166229558748" data-width="231" data-show-faces="true" data-stream="false" data-header="false"></div>
+</div>
       </div>
       <h3>Follow us</h3>
       <div class="right-box-border">
@@ -202,4 +215,5 @@ $(document).ready(function() {
     
     
 </body>
+        <%= yield :scripts %>
 </html>

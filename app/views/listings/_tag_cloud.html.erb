@@ -1,3 +1,0 @@
-<% tag_cloud Listing.tag_counts.sort { |x, y| x.name <=> y.name }, %w(css1 css2 css3 css4) do |tag, css_class| %>
-   <%= link_to tag.name, value_path(tag ), :class => css_class %>
-<% end %>

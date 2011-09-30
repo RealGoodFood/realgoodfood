@@ -19,33 +19,66 @@ div{background-color:#ffffff;}
       </ul>
     </div>
   <% end %>
-<table id="hor-minimalist-b" >
-<tr>
+
    <div class="field">
-    <td><b><%= f.label :first_name %></b><br />
-    <%= f.text_field :first_nams, default_text("Enter your First_name") %></td></tr>
+    <td><b><%= f.label :full_name %></b><br />
+    <%= f.text_field :full_name, :placeholder => "Enter your Full_name" %></td></tr>
   </div>
-<tr>
-  <div class="field">
-    <td><b><%= f.label :last_name %></b><br />
-    <%= f.text_field :last_name, default_text("Enter your Last_name") %></td></tr>
-  </div>
+<hr />
 
-<tr><td>
+   <div class="field">
+    <td><b><%= f.label :Address_1 %></b><br />
+    <%= f.text_area :address_1, :size => "100x7", :placeholder => "Enter your Full_name" %></td></tr>
+  </div>
+<hr />
+
+   <div class="field">
+    <td><b><%= f.label :address_2 %></b><br />
+    <%= f.text_area :address_2, :size => "100x7", :placeholder => "Enter your Full_name" %></td></tr>
+  </div>
+<hr />
+
+   <div class="field">
+    <td><b><%= f.label :Contact_number %></b><br />
+    <%= f.text_field :contact_number, :placeholder => "Mobile Number" %></td></tr>
+  </div>
+<hr />
+
+   <div class="field">
+    <td><b><%= f.label :Status %></b><br />
+    <%= f.text_field :status, :placeholder => "Mobile Number" %></td></tr>
+  </div>
+<hr />
+
+   <div class="field">
+    <td><b><%= f.label :Postal_number %></b><br />
+    <%= f.text_field :postal_address, :placeholder => "Mobile Number" %></td></tr>
+  </div>
+<hr />
+
+   <div class="field">
+    <td><b><%= f.label :Date_of_birth %></b><br />
+    <%= f.date_select :date_of_birth %></td></tr>
+  </div>
+<hr />
+
   <div class="field">
-   <div class="g" style="position:absolute;top:3px;right:-1px;height:100%;width:5px;"></div>
       <b><%= f.label :'Food_Preference:' %></b><br />
-        <% for category in Value.find(:all) %>
-     <%= check_box_tag( 'profile[value_ids][]',  category.id,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+       <% for category in Value.find(:all) %>
+       <%= check_box_tag( 'profile[value_ids][]',
+           category.id,  
+           :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+           <strong><%= category.name %></strong>
+       <% end %>
+</div><hr />
 
-           <%= category.name %>
-   <% end %>  </div>
-</div>
-</td></tr>
-<tr>
 <div class ="field">
-   <td><b><%= f.label :'Cooking interests' %></b><br /> 
-   <%= f.text_area :about_me, :size=>'75x6',  :class => "mceEditor" %></td></tr>
+   <b><%= f.label :'Cooking interests Or about Me' %></b><br /> 
+   <%= f.text_area :about_me, :size=>'75x6',  :class => "mceEditor" %>
+</div><hr />
+
+<div class ="field">
+   <%= f.hidden_field :user_id, :value => current_user.id %>
 </div>
 
   <div class="actions">
