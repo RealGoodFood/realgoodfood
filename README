@@ -1,6 +1,6 @@
 To run the app follow the steps below:
 
-bundle install
-rake db:create
-rake db:migrate
-rake db:seed
+*bundle install
+*rake db:create
+*rake db:migrate
+*rake db:seed
