@@ -1,0 +1,89 @@
+<p>
+<b>Title:</b>
+<%= @listing.title %>
+</p>
+
+<p>
+<b>Food category:</b>
+<%= @listing.food_category.name %>
+</p>
+
+<p>
+<b>Description:</b>
+<%= @listing.description %>
+</p>
+
+<p>
+<b>Start date:</b>
+<%= @listing.start_date %>
+</p>
+
+<p>
+<b>End date:</b>
+<%= @listing.end_date %>
+</p>
+
+<table>
+<b>Food type:</b><br />
+<% @listing.tags.each do |f| %>
+<tr>
+<td><%= f.name %></td>
+</tr>
+<% end %>
+</table>
+
+<p>
+<b>Availablity Duration:</b><br />
+<% if ( @listing.end_date - Date.today() ).to_i < 0 %>
+<p style = color:darkorange;font-size:20px> <b>"Sorry !..this Listing Has Expired "</b> </p>
+<% else %>
+<%= distance_of_time_in_words(Time.now, @listing.end_date +  50.minute) %></td>
+<% end %>
+</p>
+
+<p>
+<b>Eat by date:</b>
+<%= @listing.eat_by_date.name %>
+</p>
+<hr />
+<h3>
+<% if @listing.user_id == current_user.id %>
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Destroy', @listing, :confirm => 'Are you sure?', :method => :delete %> |
+<a href="/listings/" class="button-save-cancel"><span>View All</span></a>
+<% else %>
+<%= link_to 'List All', listings_path %> 
+<% end %>
+</h3>
+
+</table>
+<br /><br />
+<table cellspacing='0' class="Design4">
+<% unless @listing.comments.empty? %>
+  <h2> 
+	<u><%= pluralize(@listing.comments.size, 'comment') %></u>
+  </h2>
+  
+ <% for comment in @listing.comments %>
+
+<tr>
+  <thead>
+     <td><%= gravatar_image_tag(current_user.email.downcase,
+                                            :alt => current_user.email,
+                                            :class => 'gravatar',
+                                            :gravatar => {:size => 50}) %>
+
+      <strong style  = color:blue>
+         <%= h comment.user.email  %>
+     </strong>
+      <em>on <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %></em>
+    </td>
+</tr>
+    <td><%= simple_format comment.content %><hr /></td>
+  <% end %>
+<% if comment.user_id == current_user.id %>
+          <td>&nbsp;&nbsp;&nbsp;<%= link_to 'Edit', edit_comment_path(comment) %></td>
+  <% end %>
+<% end %>
+</table>
+<%= render :partial => 'comments/form' %>

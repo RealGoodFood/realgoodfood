@@ -1,0 +1,44 @@
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Event description:</b>
+  <%= @event.event_description %>
+</p>
+
+<p>
+  <b>Event starting on:</b>
+  <%= @event.event_starting_on %>
+</p>
+
+<p>
+  <b>Event ending on:</b>
+  <%= @event.event_ending_on %>
+</p>
+
+<p>
+  <b>Attending:</b>
+  <% if @event.attending==true %>
+     Attending 
+ <% else %>
+not Attending 
+ <% end %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @event.user.email %>
+</p>
+
+   <b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
+<br /><br />
+
+<b><%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'List All Events', events_path %> |
+<%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %></b>
+<br /><br /><br />
+  <%= gmaps4rails(@json) %>
+

@@ -1,0 +1,75 @@
+<head>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+
+<% form_for @listing do | f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <b><u><%= f.label :title %></u></b><br />
+    <%= f.text_field :title %><br />
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :food_category_id %></u></b><br />
+    <%= f.collection_select  :food_category_id, FoodCategory.find(:all), :id ,:name %>
+    <!--<%= f.autocomplete_field :food_category_id, autocomplete_food_category_name_listings_path %> !-->
+    <!--<%= f.autocomplete_field :food_category_id, autocomplete_food_category_name_listings_path, :id_element => "#id_element_placeholder" %>!-->
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :description %></u></b><br />
+    <%= f.text_area :description, :size => "55x10" %>
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :location_id %></u></b><br />
+    <%= f.collection_select :location_id , Location.find_all_by_user_id(current_user), :id ,:address  %></td>
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :start_date %></u></b><br />
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :end_date %></u></b><br />
+    <%= f.date_select :end_date %>
+  </div>
+<br />
+  <div class="field">
+    <%= f.hidden_field :user_id, :value=>current_user.id %>
+  </div>
+
+  <div class="field">
+    <b><u><%= f.label :Food_Type %></u></b><br />
+        <% @values.each do |value| -%>
+        <%= check_box_tag( 'listing[tag_list][]',  value.name,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+        <%= value.name -%>
+        <% end %>
+ </div>
+<br />
+  <div class="field">
+    <td><b><u><%= f.label :Suggested_Storage %></u></b><br />
+    <%= f.radio_button  :eat_by_date_id, 1 %> <%= f.label :eat_by_date_id, "Shelf" %>
+    <%= f.radio_button  :eat_by_date_id, 2 %> <%= f.label :status_2, "Freezer" %>  
+    <%= f.radio_button  :eat_by_date_id, 3 %> <%= f.label :status_3, "Fridge" %><br /></td>
+  </div>
+
+  <div class="actions">
+      <a><span><%= f.submit :class=>'button-save-cancel' %></span></a>
+  </div>
+
+<% end %>
+</body>

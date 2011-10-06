@@ -1,0 +1,23 @@
+<h1>Listing eat_by_dates</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eat_by_dates.each do |eat_by_date| %>
+  <tr>
+    <td><%= eat_by_date.name %></td>
+    <td><%= link_to 'Show', eat_by_date %></td>
+    <td><%= link_to 'Edit', edit_eat_by_date_path(eat_by_date) %></td>
+    <td><%= link_to 'Destroy', eat_by_date, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eat by date', new_eat_by_date_path %>

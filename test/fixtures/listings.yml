@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  food_category_id: 1
+  description: MyText
+  location_id: 1
+  start_date: 2011-07-23
+  end_date: 2011-07-23
+  user_id: 1
+  value_id: 1
+  eat_by_date_id: 1
+
+two:
+  title: MyString
+  food_category_id: 1
+  description: MyText
+  location_id: 1
+  start_date: 2011-07-23
+  end_date: 2011-07-23
+  user_id: 1
+  value_id: 1
+  eat_by_date_id: 1

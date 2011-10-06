@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= yield :head %> 
+  <title>Real Good Food</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
+    <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom.css' %>
+
+</head>
+
+<body>
+
+
+<div id="maincontainer">
+	<div id="topsection">
+		<div class="innertube">
+			<%= render :partial => 'shared/global_links' %>
+			<%= tabs %>
+			<%= subtabs %> 
+			</div>
+	</div>
+</div>
+
+<div id="contentwrapper">
+	<div id="contentcolumn">
+		<div class="innertube">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+       					 <br /><%= yield %>
+		</div>
+	</div>
+</div>
+<br /><br />
+<div id="leftcolumn">
+	<div class="innertube">
+			<table>
+				<td>
+					<h2 style = "background-color:lightblue;font-weight:bolder"> Values </h2>
+						<% Value.find(:all).each do |v| %>
+							<tr>
+							<td style = color:blue><%= link_to v.name, v %></td>
+							</tr>
+						<% end %>
+				</td>
+
+				<td>
+					<h2 style = background-color:lightblue> Eat By Date </h2>
+						<% EatByDate.find(:all).each do |v| %>
+							<tr>
+							<td><%= link_to v.name, v %></td>
+							</tr>
+						<% end %>
+				</td>
+				<td>
+					<h2 style = background-color:lightblue> Food Categories </h2>
+						<% FoodCategory.find(:all).each do |v| %>
+							<tr>
+							<td><%=link_to v.name, v %></td>
+							</tr>
+						<% end %>
+				</td>
+				</table>
+		</div>
+</div>
+<br /><br />
+<div id="rightcolumn">
+	<div class="innertube">
+        </div>
+</div>
+			<div id="footer">
+				<%= render :partial => 'shared/footer' %>
+				<%= yield :scripts %>
+			</div>
+		</div>
+	</body>
+</html>
+

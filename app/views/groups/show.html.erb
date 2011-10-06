@@ -1,0 +1,29 @@
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>Group type:</b>
+  <%= @group.group_type %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @group.location %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @group.description %>
+</p>
+
+
+<div style = "font-size:15px">
+
+  <%= link_to 'Edit', edit_group_path(@group) %> | 
+  <%= link_to 'Destroy', @group, :confirm => 'Are you sure?', :method => :delete %> | 
+  <%= link_to 'List All Groups', groups_path %> 
+
+</div>

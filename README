@@ -1,0 +1,22 @@
+How to Setup the app:
+
+Prerequisits for installation ruby 1.9.2p-180 using rvm or compiled.
+In case you are installing ruby afresh, please make sure you install development headers for
+libreadline and libzlib
+
+gem install bundler
+gem install rails -v="3.0.9"
+
+bundle install 
+rake db:create
+rake db:migrate
+rake db:seed
+
+rails s
+
+Known Issues to be cleared within this week :
+
+Issues in Uploading Image using paperclip. Uses Gravatar http://en.gravatar.com/ at the moment.
+Homepage Maps / FB to be activated 
+
+

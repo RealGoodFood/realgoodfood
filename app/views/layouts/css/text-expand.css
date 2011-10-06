@@ -1,0 +1,43 @@
+
+.iconspan{
+float: right;
+margin: 3px;
+cursor:hand;
+cursor:pointer;
+font-weight: bold;
+
+}
+
+/*CSS used to style the examples. Remove if desired: */
+
+.eg-bar{
+background-color: #54B093;
+font-weight: normal;
+border-top: 1px solid #ffffff;
+height: 25px;
+line-height: 25px;
+padding: 0;
+color:#ffffff;
+font-family:Tahoma, Geneva, sans-serif;
+font-weight:normal;
+font-size:11px;
+}
+
+div.eg-bar{
+width:100%;
+}
+
+.icongroup1{
+width:95%;
+margin:10px 0px 20px 22px;
+font-family:Tahoma, Geneva, sans-serif;
+font-weight:normal;
+font-size:11px;
+}
+
+
+ 
+.iconspan1 { margin:0px; cursor:pointer; }
+
+a.expandlink { color:#004831; text-decoration:none;}
+a.expandlink:hover { color:#000000; text-decoration:none; }
