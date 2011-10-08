@@ -13,6 +13,7 @@
   <tr>
     <td><%=link_to listing.title, listing %></td>
     <td><%= link_to listing.food_category.name, listing.food_category %></td>
+    <td><%= link_to 'Add to Events', {:action => 'add_to_event', :id => listing} %></td>
   </tr>
 <% end %>
 </table>

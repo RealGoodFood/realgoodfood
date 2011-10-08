@@ -47,6 +47,9 @@
 </p>
 <hr />
 <h3>
+
+
+
 <% if @listing.user_id == current_user.id %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Destroy', @listing, :confirm => 'Are you sure?', :method => :delete %> |

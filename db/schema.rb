@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827083041) do
+ActiveRecord::Schema.define(:version => 20111007071641) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20110827083041) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "event_category_id"
+  end
+
+  create_table "events_listings", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "listing_id"
   end
 
   create_table "folders", :force => true do |t|

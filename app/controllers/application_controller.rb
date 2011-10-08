@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  def tag_count
+	@number_of_tags = Listing.tag_counts_on(:tags)
+  end
+
+
  private
  
   def authenticate
@@ -54,10 +59,4 @@ def flash_message
      new_profiles_path
   end
 	
-  def tag_count
-	@number_of_tags = Listing.tag_counts_on(:tags)
-  end
-
-
-
 end

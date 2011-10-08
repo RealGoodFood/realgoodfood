@@ -1,30 +1,26 @@
-	<table>
-			    <tr class="header">
+		<table>
+    		        <tr>
       
-			      <th>Name:</th>
-			      
-				<th>Description</th>
+			        <th>Name:</th>
+			      	<th>Description</th>
 				<th>Event starting on:</th>
 				<th>Event ending on:</th>	
 				
     			</tr>
-		</p>
-	
-		<p>		
+			
 			<tr>
-			<% @events.each do |book| %></td>
-    				<td><%= book.name %></td>
-			        <td><%= book.event_description %></td>
-				<td><%= book.event_starting_on %></td>
-				<td><%= book.event_ending_on %></td>
+			<% @events.each do |event| %></td>
+    				<td><%= event.name %></td>
+			        <td><%= event.event_description %></td>
+				<td><%= event.event_starting_on %></td>
+				<td><%= event.event_ending_on %></td>
 	
-				 <td><%= link_to 'Show', book %></td>
-    				<td><%= link_to 'Edit', edit_value_path(book) %></td>
-    				<td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
+				 <td><%= link_to 'Show', event %></td>
+    				<td><%= link_to 'Edit', edit_event_path(event) %></td>
+    				<td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
   
       			</tr>
 
 			<% end %>
-			</table>		
-
+		</table>
 

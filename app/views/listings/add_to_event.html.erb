@@ -1,0 +1,60 @@
+<p>
+<b>Title:</b>
+<%= @listing.title %>
+</p>
+
+<p>
+<b>Food category:</b>
+<%= @listing.food_category.name %>
+</p>
+
+<p>
+<b>Description:</b>
+<%= @listing.description %>
+</p>
+
+<p>
+<b>Start date:</b>
+<%= @listing.start_date %>
+</p>
+
+<p>
+<b>End date:</b>
+<%= @listing.end_date %>
+</p>
+
+<table>
+<b>Food type:</b><br />
+<% @listing.tags.each do |f| %>
+<tr>
+<td><%= f.name %></td>
+</tr>
+<% end %>
+</table>
+
+<p>
+<b>Availablity Duration:</b><br />
+
+<% if ( @listing.end_date - Date.today() ).to_i < 0 %>
+
+	<p style = color:darkorange;font-size:20px> <b>"Sorry !..this Listing Has Expired "</b> </p>
+
+<% else %>
+
+	<%= distance_of_time_in_words(Time.now, @listing.end_date +  50.minute) %></td>
+
+	<p style = color:darkorange;font-size:20px> <b> Add To an Event </b> </p>
+
+
+	<% form_for @listing, {:action => 'event_added', :id => @listing.id} do | f| %>
+		<% for event in @events %>
+		 	<%= check_box_tag "listing[event_ids][]",  event.id %>
+			<%= event.name %>
+		<% end %>
+		<div class="actions">
+		      <a><span><%= f.submit "Add Food to Selected Events" %></span></a>
+		</div>
+
+	<% end %>
+<% end %>
+

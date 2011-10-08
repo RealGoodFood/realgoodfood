@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
+  
   belongs_to :user
+  has_and_belongs_to_many :listings
+  
 
   acts_as_gmappable
 

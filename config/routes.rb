@@ -7,7 +7,7 @@ RgfNew::Application.routes.draw do
 
 
   get "listings/tag/"
-
+  get "listings/add_to_event"
 
 
 

@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
- before_filter :authenticate_user!, :tag_count
+ before_filter :authenticate_user!
+ before_filter :tag_count
  autocomplete :food_category, :name
 
 # autocomplete :food_category, :name, :full => true
@@ -44,7 +45,7 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @values = Value.all
-	#tag_count
+	
 
     respond_to do |format|
       format.html # new.html.erb
@@ -99,6 +100,7 @@ def search
 
   # PUT /listings/1
   # PUT /listings/1.xml
+
   def update
     @listing = Listing.find(params[:id])
 
@@ -130,5 +132,21 @@ def search
 	@results  = Listing.tagged_with(params[:id])
   end
 
+  def add_to_event
+	@listing = Listing.find(params[:id])
+	@events = Event.all
+  end
+
+  def event_added
+	@listing = Listing.find(params[:id])
+	respond_to do |format|
+        if @listing.save # If save succeeds, redirect to the list action
+			flash[:notice] = "Book created"
+	        	redirect_to(:action => 'index')
+	       else # If save fails, redisplay the form so user can fix problems
+	      	      render('add_to_event')
+	       end
+    end 
+  end
 
 end
