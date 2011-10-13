@@ -1,13 +1,26 @@
-<h2>Compose</h2>
+<h1>Compose</h1>
 
-<% form_for :message, :url => {:controller => "sent", :action => "create"} do |f| %>
+<%= simple_form_for :message, :url => {:controller => "sent", :action => "create"} do |f| %>
 
-  <p>
-    To:<br />
-    <%= checklist "message[to][]", User.find(:all), :id, :email, @message.to %>
-  </p>
+  <div class= "fields">
+    <%= f.label :'To:' %><br />
+    <select name="message[to][]">
+      <%= options_from_collection_for_select(User.find(:all), :id, :email, @message.to) %>
+    </select>
+  </div><br />
 
-  <p>Subject:<br /> <%= f.text_field :subject %></p>
-  <p>Message :<br /> <%= f.text_area :body %></p>
-  <p><%= submit_tag "Send" %></p>
+  <div class ="fields">
+    <%= f.label :'Subject:' %><br />
+    <%= f.text_field :subject %>
+  </div><br />
+
+  <div class= "fields">
+    <%= f.label:'Body:' %><br />
+    <%= f.text_area :body %>
+  </div><br />
+
+<div class ="fields">
+  <%= submit_tag "Send" %>
+</div>
+
 <% end %>

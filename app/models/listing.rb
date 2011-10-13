@@ -25,11 +25,18 @@ class Listing < ActiveRecord::Base
  belongs_to :eat_by_date
  belongs_to :location
  has_and_belongs_to_many :values
-
  has_and_belongs_to_many :events
 
 #==================================================================================================
 
+  has_attached_file :photo,
+     :styles  =>
+      {
+       :icon     =>    "50x50", 
+       :thumb    =>    "100x100",
+       :profile  =>    "150x150", 
+       :small    =>    "400x400>"
+      }  
 
 #has_attached_file :photo, :styles => { :small => "150x150>" },
  #                 :url  => "/assets/listings/:id/:style/:basename.:extension",

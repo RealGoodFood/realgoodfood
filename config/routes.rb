@@ -1,28 +1,23 @@
 RgfNew::Application.routes.draw do
-  get "mailbox/index"
-  #get "messages/show"
-  #get "sent/index"
-  #get "sent/show"
+
+  root :to => "home#index"
+
   get "events/update_events"
-
-
+  get "home/index"
+  get 'listings/autocomplete_food_category_name'
   get "listings/tag/"
   get "listings/add_to_event"
 
-
-
-	
-
+  resources :mailbox	
+  resources :dashboards
   resources :sent
-  resources :mailbox, :collection => { :trash => :get }
 
- # resources :mailbox do 
- #   get :trash, :on => :collection
- # end
-
-  resources :messages, :member => { :reply => :get, :forward => :get, :reply_all => :get, :undelete => :put }
-
-
+  resources :messages do
+   get :reply, :on => :member
+   get :forward, :on => :member
+   get :reply_all, :on => :member
+   put :undelete,  :on => :member
+  end
 
   resources :event_categories
   resources :groups
@@ -32,7 +27,7 @@ RgfNew::Application.routes.draw do
   resources :food_categories
   resources :eat_by_dates
   resources :values
-  
+  resources :comments
 
  resources :listings do
     get :autocomplete_food_category_name, :on => :collection
@@ -43,12 +38,8 @@ RgfNew::Application.routes.draw do
  end
 
 
-  #devise_for :users
- # devise_for :users do 
- #    get 'logout' => 'devise/sessions#destroy'
- # end
 
-  devise_for :users do 
+  devise_for :users, :controllers => { :registrations => "registrations" } do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
@@ -56,13 +47,10 @@ RgfNew::Application.routes.draw do
     resources :comments
   end
 
-  resources :comments
-  #get "listings/search"	
-  match 'listings/:id', :to => 'listings#search'
-  match 'inbox', :to => 'mailbox#index'
-  #match '/contact', :to => 'pages#contact'
-  get "home/index"
-  get 'listings/autocomplete_food_category_name'
+   match "/inbox" => "mailbox#index", :as => :inbox
+   match "/sent" => "sent#index", :as => :sent
+   match "/trash" => "mailbox#trash", :as => :trash
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -112,7 +100,6 @@ RgfNew::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

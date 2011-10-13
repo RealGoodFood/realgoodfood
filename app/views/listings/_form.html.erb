@@ -3,7 +3,7 @@
 </head>
 <body>
 
-<% form_for @listing do | f| %>
+<% form_for(@listing, :html => {:multipart => true}) do |f| %>
   <% if @listing.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
@@ -48,6 +48,13 @@
     <%= f.date_select :end_date %>
   </div>
 <br />
+
+  <div class="field">
+    <b><u><%= f.label :Image_Upload %></u></b><br />
+          <%= f.file_field :photo %>
+  </div>
+<br />
+
   <div class="field">
     <%= f.hidden_field :user_id, :value=>current_user.id %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007071641) do
+ActiveRecord::Schema.define(:version => 20111010082409) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -43,7 +43,8 @@ ActiveRecord::Schema.define(:version => 20111007071641) do
     t.text     "event_description"
     t.date     "event_starting_on"
     t.date     "event_ending_on"
-    t.boolean  "attending"
+    t.integer  "no_of_guests",           :default => 0
+    t.integer  "no_of_guests_attending", :default => 0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -52,6 +53,10 @@ ActiveRecord::Schema.define(:version => 20111007071641) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "event_category_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|
@@ -63,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20111007071641) do
     t.integer  "user_id"
     t.integer  "parent_id"
     t.string   "name"
-    t.integer  "lft"
     t.integer  "rgt"
+    t.integer  "lft"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +92,10 @@ ActiveRecord::Schema.define(:version => 20111007071641) do
     t.boolean  "gmaps"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "listings", :force => true do |t|
@@ -102,6 +111,9 @@ ActiveRecord::Schema.define(:version => 20111007071641) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "locations", :force => true do |t|

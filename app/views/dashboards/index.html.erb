@@ -1,0 +1,13 @@
+<h2>
+<div id="mailbox_list" style = "border:0px solid #aaa; float:center; width:140%;text-align:center">
+    <%= link_to 'Create mail', new_sent_path %> |
+    <%= link_to "Inbox", inbox_path %> |
+    <%= link_to "Sent", sent_path %> |
+    <%= link_to "Trash", trash_path %>
+</div>
+</h2>
+
+<h2>My Listings </h2>
+
+<% @my_listings.each do |list| %>
+<%= list.title %><% end %>

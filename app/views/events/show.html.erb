@@ -1,3 +1,5 @@
+<%= image_tag @event.photo.url %>
+<br />
 
 <p>
   <b>Name:</b>
@@ -20,16 +22,17 @@
 </p>
 
 <p>
-  <b>Attending:</b>
-  <% if @event.attending==true %>
-     Attending 
- <% else %>
-not Attending 
- <% end %>
+  <td><b>Total No Of Seats:</b>
+  <%= @event.no_of_guests %></td>
 </p>
 
 <p>
-  <b>User:</b>
+  <td><b>No Of Guests Participanting:</b>
+  <%= @event.no_of_guests_attending %></td>
+</p>
+
+<p>
+  <b>Owner:</b>
   <%= @event.user.email %>
 </p>
 

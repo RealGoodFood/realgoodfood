@@ -11,7 +11,7 @@ development:
   reconnect: false
   database: rgf_new_development
   pool: 5
-  username: safew
+  username: root
   password: safew
   socket: /var/run/mysqld/mysqld.sock
 
@@ -24,7 +24,7 @@ test:
   reconnect: false
   database: rgf_new_test
   pool: 5
-  username: safew
+  username: root
   password: safew
   socket: /var/run/mysqld/mysqld.sock
 
@@ -34,6 +34,6 @@ production:
   reconnect: false
   database: rgf_new_production
   pool: 5
-  username: safew
+  username: root
   password: safew
   socket: /var/run/mysqld/mysqld.sock

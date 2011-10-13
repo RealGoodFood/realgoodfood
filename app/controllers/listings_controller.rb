@@ -29,7 +29,6 @@ class ListingsController < ApplicationController
     @tags = Listing.tag_counts_on(:tags)
     @search  = @listing.location_id
     @search_listing = Listing.find_by_sql("select title from listings where location_id = '#{@search}'")
- logger.info "Sudhir %&%&%"+@search_listing.inspect 
 
    # @start_date = @listing.start_date
     #@end_date  = @listing.end_date
@@ -58,7 +57,6 @@ def search
     @listing = Listing.find(params[:id])
     @search  = @listing.location_id
     #@search_listing = Listing.find_by_sql("select * from listings where location_id = '#{@search}'")
- logger.info "Sudhir %&%&%"+@search_listing.inspect 
     
     respond_to do |format|
       format.html # new.html.erb

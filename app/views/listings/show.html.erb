@@ -1,3 +1,7 @@
+<% if @listing.photo.exists? then %>
+	<%= image_tag @listing.photo.url(:small) %>
+<% end %>
+
 <p>
 <b>Title:</b>
 <%= @listing.title %>
@@ -15,12 +19,12 @@
 
 <p>
 <b>Start date:</b>
-<%= @listing.start_date %>
+<%= time_tag @listing.start_date %>
 </p>
 
 <p>
 <b>End date:</b>
-<%= @listing.end_date %>
+<%= time_tag @listing.end_date %>
 </p>
 
 <table>

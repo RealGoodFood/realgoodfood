@@ -46,11 +46,8 @@ class LocationsController < ApplicationController
     @location = Location.new(params[:location])
     @location.user_id = current_user.id
     respond_to do |format|
-	    puts "////////////////"
-	    puts @location.inspect
       if @location.save
-	      puts "////////////////////////////"
-        format.html { redirect_to(@location, :notice => 'Location was successfully created.') }
+        format.html { redirect_to(new_profile_path, :notice => 'Location was successfully created. please Create your Profile') }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
         format.html { render :action => "new" }
