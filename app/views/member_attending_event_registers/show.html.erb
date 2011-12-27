@@ -1,0 +1,43 @@
+
+<p>
+  <h1><%= @member_attending_event_register.event.name %></h1>
+</p>
+
+
+
+ <p><%= image_tag @member_attending_event_register.user.profile.photo.url(:icon)  %>
+
+  <%= @member_attending_event_register.user.profile.full_name  %></p>
+
+  <% if @member_attending_event_register.state == 'request_sent' %>
+
+ <%= link_to "Accept",
+              accept_path(:member_attending_event_register_id => @member_attending_event_register.id),
+              :method => :post %> | 
+
+ <%= link_to "Reject",
+              reject_path(:member_attending_event_register_id => @member_attending_event_register.id),
+              :method => :post %>
+
+  <% else %>
+
+       <% if @member_attending_event_register.state=="rejected" %>
+            <h3 style ="color:red">
+               <%= @member_attending_event_register.state %></h3>
+       <% else %>
+            <h3 style ="color:green">
+               <%= @member_attending_event_register.state %></h3>
+       <% end %>
+
+  <% end %>
+<hr />
+
+
+
+<%= link_to 'Edit', edit_member_attending_event_register_path(@member_attending_event_register) %> |
+<%= link_to 'Back', member_attending_event_register_path %>
+
+
+
+<p id="notice"><%= notice %></p>
+

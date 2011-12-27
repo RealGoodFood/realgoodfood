@@ -1,0 +1,2 @@
+module MemberAttendingEventRegistersHelper
+end

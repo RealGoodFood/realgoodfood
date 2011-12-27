@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Real Good Food</title>
+     <%= stylesheet_link_tag "scaffolds",'styles' %>
+     <%= javascript_include_tag "application" %>
+     <%= csrf_meta_tag %>
+     <%= yield(:head) %>
+     <script type="text/javascript">var switchTo5x=true;</script>
+     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+     <script type="text/javascript">stLight.options({publisher:'932ad91f-b109-4577-8805-a4d7a2368fec'});
+     </script>
+
+</head>
+
+<body><br />
+ <% if user_signed_in? %>
+      <div class="clear">
+             <%= render :partial => 'listings/search' %>
+      </div>
+      <div style="text-align:right">
+             <%= image_tag "User.png",:size =>"20x20" %> 
+             <b><%= link_to "My Profile", profile_path(current_user.profile.slug) %></b> | 
+
+             <%= image_tag "home.png",:size =>"20x20" %> 
+            <b><%= link_to "Home", :controller=>"home", :action =>"index" %></b> |
+
+             <%= image_tag "Menu.png",:size =>"20x20" %> 
+             <b><%= link_to "My Dashbaord", dashboards_path  %>
+
+          Welcome! <b style = "color:darkgreen"><%=h current_user.email %>.</b>
+          <b style ="font-size:10px"><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class=>"btn red" %></b>
+
+    <% else %>
+         <div style ="float:right;margin-right:30px">
+           <p>
+             <b><%= link_to 'LOGIN', new_user_session_path, :class=>"btn green" %></b>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <b><%= link_to 'REGISER',new_user_registration_path, :class=>"btn " %></b>
+           </p>
+              <% end %>
+         </div>    
+</div>
+
+    <div id="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+
+
+<%= yield %>
+
+</body>
+<%= yield :scripts %>
+</html>

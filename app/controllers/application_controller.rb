@@ -56,7 +56,7 @@ def flash_message
   end
 
   def after_sign_up_path_for(resource)
-     new_location_path
+     new_profile_path
   end
 	
 end

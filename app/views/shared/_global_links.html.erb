@@ -1,13 +1,11 @@
 <% if signed_in? %>
  	<strong><%= current_user.email %></strong> | 
-	<%= link_to "My Account", edit_user_registration_path %> | 
-	<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-    <!--
-	<%= link_to "Dashboard", root_url %> |
-    -->
+	<strong><%= link_to "MY ACCOUNT", edit_user_registration_path %></strong> | 
+	<strong><%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %> | </strong>
+	<strong><%= link_to "MY DASHBOARD", dashboard_path(current_user) %> </strong>
 <% else %>
-        <%= link_to 'sign_up', new_user_registration_path, :class => "register_link" %> |
-	<%= link_to "Log in", user_session_path %>
+        <strong><%= link_to 'REGISTER', new_user_registration_path, :class => "register_link" %></strong> |
+	<strong><%= link_to "SIGN IN", user_session_path %></strong>
 <% end %>
 
 

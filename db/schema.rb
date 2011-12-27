@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010082409) do
+ActiveRecord::Schema.define(:version => 20111015080226) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20111010082409) do
     t.text     "event_description"
     t.date     "event_starting_on"
     t.date     "event_ending_on"
-    t.integer  "no_of_guests",           :default => 0
+    t.integer  "no_of_guests"
     t.integer  "no_of_guests_attending", :default => 0
     t.integer  "user_id"
     t.datetime "created_at"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20111010082409) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "location_id"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|
@@ -102,12 +103,15 @@ ActiveRecord::Schema.define(:version => 20111010082409) do
     t.string   "title"
     t.integer  "food_category_id"
     t.text     "description"
-    t.integer  "location_id"
+    t.string   "location_address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "user_id"
     t.integer  "value_id"
     t.integer  "eat_by_date_id"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
@@ -116,18 +120,33 @@ ActiveRecord::Schema.define(:version => 20111010082409) do
     t.integer  "photo_file_size"
   end
 
+  create_table "listings_values", :id => false, :force => true do |t|
+    t.integer "value_id"
+    t.integer "listing_id"
+  end
+
   create_table "locations", :force => true do |t|
     t.string   "address"
     t.string   "street"
     t.string   "city"
     t.string   "zip"
     t.string   "state"
+    t.string   "country"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "member_attending_event_registers", :force => true do |t|
+    t.integer  "event_id"
     t.integer  "user_id"
+    t.integer  "owner_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "message_copies", :force => true do |t|
@@ -155,13 +174,27 @@ ActiveRecord::Schema.define(:version => 20111010082409) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "first_nams"
-    t.string   "last_name"
+    t.string   "full_name"
+    t.integer  "contact_number"
+    t.date     "date_of_birth"
     t.integer  "value_id"
     t.integer  "user_id"
+    t.string   "slug"
+    t.string   "facebook_profile_link"
+    t.string   "twitter_profile_link"
+    t.string   "google_plus_profile_link"
+    t.string   "linked_in_profile_link"
     t.text     "about_me"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
+  create_table "profiles_values", :id => false, :force => true do |t|
+    t.integer "profile_id"
+    t.integer "value_id"
   end
 
   create_table "taggings", :force => true do |t|

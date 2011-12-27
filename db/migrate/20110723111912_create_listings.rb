@@ -4,13 +4,15 @@ class CreateListings < ActiveRecord::Migration
       t.string :title
       t.integer :food_category_id
       t.text :description
-      t.integer :location_id
+      t.string :location_address
+      t.float :latitude
+      t.float :longitude
       t.date :start_date
       t.date :end_date
       t.integer :user_id
       t.integer :value_id
       t.integer :eat_by_date_id
-
+      t.string :slug
       t.timestamps
     end
   end

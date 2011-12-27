@@ -1,0 +1,4 @@
+<%= auto_complete_result @food_categories, :name %>
+$("food_categories").update("<%= escape_javascript(render(@food_categories))%>");
+
+

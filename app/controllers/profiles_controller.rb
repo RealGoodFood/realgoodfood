@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.xml
   def show
     @profile = Profile.find(params[:id])
+    @latest_event = Event.where(:created_at => 1.days.ago .. 1.days.from_now)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -56,6 +57,7 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
+    params[:profile][:value_ids] ||= []
     @profile = Profile.find(params[:id])
 
     respond_to do |format|

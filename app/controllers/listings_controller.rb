@@ -2,13 +2,14 @@ class ListingsController < ApplicationController
 
  before_filter :authenticate_user!
  before_filter :tag_count
- autocomplete :food_category, :name
+ #autocomplete :food_category, :name, :full => true
 
-# autocomplete :food_category, :name, :full => true
 
  #autocomplete :food_category, :name do |items|
   #   CustomJSON::Encoder.encode(items)
  #end
+
+
 
   # GET /listings
   # GET /listings.xml
@@ -27,10 +28,10 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @comment = Comment.new(:listing =>@listing)
     @tags = Listing.tag_counts_on(:tags)
-    @search  = @listing.location_id
-    @search_listing = Listing.find_by_sql("select title from listings where location_id = '#{@search}'")
+    @search  = @listing.location_address
+    @search_listing = Listing.find_by_sql("select title from listings where location_address = '#{@search}'")
 
-   # @start_date = @listing.start_date
+    #@start_date = @listing.start_date
     #@end_date  = @listing.end_date
     #@total_days = @end_date -Date.today().to_s 
     respond_to do |format|
@@ -44,25 +45,25 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @values = Value.all
-	
 
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.xml  { render :xml => @listing }
     end
   end
 
 
-def search 
-    @listing = Listing.find(params[:id])
-    @search  = @listing.location_id
+#def search 
+ #   @listing = Listing.find(params[:id])
+ #   @search  = @listing.location_id
     #@search_listing = Listing.find_by_sql("select * from listings where location_id = '#{@search}'")
     
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @listing }
-    end
-  end
+ #   respond_to do |format|
+ #     format.html # new.html.erb
+ #     format.xml  { render :xml => @listing }
+ #   end
+ # end
 
 
   # GET /listings/1/edit

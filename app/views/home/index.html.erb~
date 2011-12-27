@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Real Good Food</title>
+     <%= stylesheet_link_tag 'real-good-food.css','nivo-theme.css','nivo-slider.css','tabmenu.css' %>
+     <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css" %>
+     <%= javascript_include_tag "application" %>
+     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+                             "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+     <%= csrf_meta_tag %>
+     <%= yield(:head) %>
+     <script type="text/javascript">var switchTo5x=true;</script>
+     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+     <script type="text/javascript">stLight.options({publisher:'932ad91f-b109-4577-8805-a4d7a2368fec'});</script>
+
+</head>
+
+<body>
+<script type="text/javascript" src="../javascripts/tabmenu.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	//Default Action
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+	
+	//On Click Event
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+		var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active content
+		return false;
+	});
+
+});
+</script>
+
+<div id="sitewrapper">
+
+
+    <div class="left">
+        <a href="index.html">
+          <img src="images/logo.jpg" width="136" height="123" alt="logo" />
+        </a>
+    </div>
+
+<div class="clear"></div>
+
+<div class="top-nav">
+       <span>
+           <a href="#"><%= link_to "Listings", listings_path %></a>
+           <a href="#"><%= link_to "Events", events_path %></a>
+           <a href="#"><%= link_to "All Groups", groups_path %></a>
+           <a href="#">Latest Listings</a>
+           <a href="#">Latest Events</a> 
+
+      </span>
+</div>
+
+<div id="header-border">
+  <div>
+   <div id="wrapper">
+    
+   <div class="slider-wrapper nivo-theme">
+
+      <div class="ribbon"></div>
+
+        <div id="slider" class="nivoSlider">
+          <img src="images/header.jpg" alt="" />
+          <img src="images/header2.jpg" alt="" />
+          <img src="images/header3.jpg" alt="" />
+        </div>
+
+   
+    </div>
+   </div>
+ </div>
+</div>
+
+<div id="maincontainer">
+  <div id="left-center-container">
+    <div>
+        <h1>Welcome to Real Good Food !</h1>
+        <p> Thanks for visiting! This is the place to be if you love to cook and share your creations with people who will appreciate them as much as you do.</p>
+        <p>Please don't hesitate to join the group most local to you: Ann Arbor, Carrboro/Chapel-Hill, Durham. Or please let us know where you would like Real Good Food to launch next by visiting this page.</p>
+        <p>Also, we are in a transition period and we are building a new and more functional website.</p>
+      </div>
+      <div class="clear"></div>
+      <div class="menulinkmain">
+         <a href="/listings" class="findameal"></a>
+      <div class="menu-right-line"> </div>
+        <a href="/events" class="postameal"></a>
+      <div class="menu-right-line"> </div>
+        <a href="/groups" class="gomobile"></a> </div>
+      <div class="clear"></div>
+      
+      
+      <div class="tab-container">
+
+
+    <ul class="tabs">
+        <li><a href="#tab1"><span>Events</span></a></li>
+        <li><a href="#tab2"><span>Group</span></a></li>
+       
+        
+
+    </ul>
+    <div class="event-search-bg"><span>
+    <div class="left">
+            <input name="" type="text"  class="events-inputbox"/>
+          </div>
+            <div class="right"><a href="#"><img src="images/search-event.png" alt="search icon" /></a></div>
+    
+    </span></div>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content">
+          <% @event.each do |e| %>
+          <div class="tabmenu-contain-main">
+           <div class="tabmenu-contain-image">
+            <% if e.photo.exists? then %>
+ 	     <%= image_tag e.photo.url(:thumb) %>
+            <% end %>
+           </div>
+          <div class="tabmenu-contain-teaxright"><h5><%= time_tag e.created_at %></h5>
+            <h6><%= link_to e.name, e %></h6>
+            <strong>Where: </strong><%= e.address %><br />
+	    <strong>When:  </strong><%= time_tag e.event_starting_on %> <b>until</b> <%= time_tag e.event_ending_on %>
+          </div>
+        </div>
+       <% end %>
+        <div class="pagginginarea">
+           <%= will_paginate @event, :page_links => false %>            
+        </div>
+
+        </div>
+
+        <div id="tab2" class="tab_content">
+          <% @group.each do |g| %>
+          <div class="tabmenu-contain-main">
+           <div class="tabmenu-contain-image">
+            <% if g.photo.exists? then %>
+ 	     <%= image_tag g.photo.url(:thumb) %>
+            <% end %>
+           </div>
+          <div class="tabmenu-contain-teaxright"><h5><%= time_tag g.created_at %></h5>
+            <h6><%= link_to g.name, g %></h6>
+          </div>
+        </div>
+       <% end %>
+        </div>
+        
+        
+    </div>
+</div>
+     
+    </div>
+    <div id="righ-container">
+      <h3>Search New Good Food</h3>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="googlemap-seare-area">
+            <div class="left">
+              <input name="" type="text"  class="google-map-inputbox"/>
+            </div>
+            <div class="right"><a href="#"><img src="images/search-icon-rightside.png" width="28" height="29" alt="search icon" /></a></div>
+          </div>
+          <div class="left">
+                  <iframe width="231" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small> 
+
+          </div>
+        </div>
+      </div>
+      <div class="right-box-border">
+        <div class="right-box-main"> <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like-box" data-href="https://www.facebook.com/pages/Real-Good-Food/105166229558748" data-width="231" data-show-faces="true" data-stream="false" data-header="false"></div>
+</div>
+
+        </div>
+      </div>
+
+      <h3>Follow us</h3>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <a href="#" class="facebook-icon"></a>
+          <a href="#" class="twitter-  icon"></a>
+          <a href="#" class="rss-icon"></a>
+          <a href="#" class="myspace-icon"></a>
+          <a href="#" class="delicious-icon"></a>
+        </div>
+      </div>
+    </div>
+    <div id="center-right-inner-container">
+     <%= yield %>
+    </div>
+
+  <div id="footer">
+    <div class="left">
+      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<script type="text/javascript" src="javascripts/jquery-1.6.1.min.js"></script> 
+<script type="text/javascript" src="javascripts/jquery.nivo.slider.pack.js"></script> 
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    </script>
+

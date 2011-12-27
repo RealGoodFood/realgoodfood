@@ -1,0 +1,173 @@
+<div id="sitewrapper">
+<div class="clear"></div>
+
+<div class="top-nav">
+       <span>
+           <a href="#"><%= link_to "All Listings", listings_path %></a>
+           <a href="#"><%= link_to "All Events", events_path %></a>
+           <a href="#"><%= link_to "All Groups", groups_path %></a>
+           <a href="#">SIGN UP</a>
+           <a href="#">CONTACT US</a> 
+
+      </span>
+</div>
+
+<div id="header-border">
+  <div>
+   <div id="wrapper">
+    
+   <div class="slider-wrapper nivo-theme">
+
+      <div class="ribbon"></div>
+
+        <div id="slider" class="nivoSlider">
+          <img src="images/header.jpg" alt="" />
+          <img src="images/header2.jpg" alt="" />
+          <img src="images/header3.jpg" alt="" />
+        </div>
+
+   
+    </div>
+   </div>
+ </div>
+</div>
+
+<div id="maincontainer">
+  <div id="left-center-container">
+    <div>
+        <h1>Welcome to Real Good Food !</h1>
+        <p> Thanks for visiting! This is the place to be if you love to cook and share your creations with people who will appreciate them as much as you do.</p>
+        <p>Please don't hesitate to join the group most local to you: Ann Arbor, Carrboro/Chapel-Hill, Durham. Or please let us know where you would like Real Good Food to launch next by visiting this page.</p>
+        <p>Also, we are in a transition period and we are building a new and more functional website.</p>
+      </div>
+      <div class="clear"></div>
+      <div class="menulinkmain">
+         <a href="/listings" class="findameal"></a>
+      <div class="menu-right-line"> </div>
+        <a href="/events" class="postameal"></a>
+      <div class="menu-right-line"> </div>
+        <a href="/groups" class="gomobile"></a> </div>
+      <div class="clear"></div>
+      
+      
+      <div class="tab-container">
+
+
+    <ul class="tabs">
+        <li><a href="#tab1"><span>Events</span></a></li>
+        <li><a href="#tab2"><span>Group</span></a></li>
+       
+        
+
+    </ul>
+    <div class="event-search-bg"><span>
+    <div class="left">
+            <input name="" type="text"  class="events-inputbox"/>
+          </div>
+            <div class="right"><a href="#"><img src="images/search-event.png" alt="search icon" /></a></div>
+    
+    </span></div>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content">
+          <% @event.each do |e| %>
+          <div class="tabmenu-contain-main">
+           <div class="tabmenu-contain-image">
+            <% if e.photo.exists? then %>
+ 	     <%= image_tag e.photo.url(:thumb) %>
+            <% end %>
+           </div>
+          <div class="tabmenu-contain-teaxright"><h5><%= time_tag e.created_at %></h5>
+            <h6><%= e.name %></h6>
+            <strong>Where: </strong><%= e.address %><br />
+	    <strong>When:  </strong><%= time_tag e.event_starting_on %> <b>until</b> <%= time_tag e.event_ending_on %>
+          </div>
+        </div>
+       <% end %>
+        <div class="tabmenu-contain-main">
+          <div class="tabmenu-contain-image">
+             <img src="images/event-logo.jpg" width="86" height="64" alt="event logo" />
+         </div>
+          <div class="tabmenu-contain-teaxright"><h5>Saturday, July 11, 2009</h5>
+            <h6>7/11 Free Slurpee Day 2009</h6>
+	       <strong>Where:	</strong>All participating 7/11 locations<br />
+	       <strong>When:	</strong>Saturday, July 11, 2009 at 12:00 am until Sunday, July 12, 2009 at 12:00 am
+          </div>
+        </div>
+        <div class="tabmenu-contain-main">
+          <div class="tabmenu-contain-image"><img src="images/event-logo.jpg" width="86" height="64" alt="event logo" />
+          </div>
+          <div class="tabmenu-contain-teaxright"><h5>Saturday, July 11, 2009</h5>
+            <h6>7/11 Free Slurpee Day 2009</h6>
+			<strong>Where:	</strong>All participating 7/11 locations<br />
+			<strong>When:	</strong>Saturday, July 11, 2009 at 12:00 am until Sunday, July 12, 2009 at 12:00 am
+          </div>
+        </div>
+        <div class="pagginginarea">
+           <%= will_paginate @event, :page_links => false %>            
+        </div>
+        </div>
+        <div id="tab2" class="tab_content">
+          <% @group.each do |g| %>
+          <div class="tabmenu-contain-main">
+           <div class="tabmenu-contain-image">
+            <% if g.photo.exists? then %>
+ 	     <%= image_tag g.photo.url(:thumb) %>
+            <% end %>
+           </div>
+          <div class="tabmenu-contain-teaxright"><h5><%= time_tag g.created_at %></h5>
+            <h6><%= g.name %></h6>
+          </div>
+        </div>
+       <% end %>
+        </div>
+        
+        
+    </div>
+</div>
+     
+    </div>
+    <div id="righ-container">
+      <h3>Search New Good Food</h3>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="googlemap-seare-area">
+            <div class="left">
+              <input name="" type="text"  class="google-map-inputbox"/>
+            </div>
+            <div class="right"><a href="#"><img src="images/search-icon-rightside.png" width="28" height="29" alt="search icon" /></a></div>
+          </div>
+          <div class="left"><img src="images/google-map.jpg" width="231" height="201" alt="google map" /></div>
+        </div>
+      </div>
+      <div class="right-box-border">
+        <div class="right-box-main"> <img src="images/facebook.jpg" width="231" height="244" alt="facebook" /></div>
+      </div>
+      <h3>Follow us</h3>
+      <div class="right-box-border">
+        <div class="right-box-main"> <a href="#" class="facebook-icon"></a> <a href="#" class="twitter-icon"></a> <a href="#" class="rss-icon"></a> <a href="#" class="myspace-icon"></a> <a href="#" class="delicious-icon"></a> </div>
+      </div>
+    </div>
+  </div>
+    <div id="center-right-inner-container">
+     <%= yield %>
+    </div>
+
+  <div id="footer">
+    <div class="left">
+      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<script type="text/javascript" src="javascripts/jquery-1.6.1.min.js"></script> 
+<script type="text/javascript" src="javascripts/jquery.nivo.slider.pack.js"></script> 
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    </script>
+

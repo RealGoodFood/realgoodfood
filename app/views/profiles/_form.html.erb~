@@ -1,0 +1,96 @@
+<%= simple_form_for @profile  , :html => { :multipart => true } do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table id="hor-minimalist-b" >
+<div class="field">
+<tr>
+    <td><strong><%= f.label :'Full Name' %></strong><br />
+    <%= f.text_field :full_name, :placeholder=>"Enter your First_name" %></td>
+   </tr>
+</div>
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Contact_Number %></strong><br />
+    <%= f.text_field :contact_number, :placeholder =>"default_text Enter your Last_name" %></td></tr>
+  </div>
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Date_OF_Birth %></strong><br />
+    <%= f.date_select :date_of_birth, :start_year => 1950, 
+                      :order => [:day, :month, :year],
+                      :prompt => { :day => 'Select day',
+                                   :month => 'Select month',
+                                   :year => 'Select year' } %>
+
+  </div>
+
+<div class="field">
+<tr><td>
+      <strong><%= f.label :'Food_Preference:' %></strong><br /><br />
+           <% for category in Value.find(:all) %>
+           <li><%= check_box_tag( 'profile[value_ids][]',  category.id,
+         :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+           <%= category.name %></li>
+         <% end %>  </div>
+</td></tr>
+</div>
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Facebook_profile_link %></strong><br />
+    <%= f.text_field :facebook_profile_link, :placeholder =>"default_text Enter your Last_name" %></td></tr>
+  </div>
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Twitter_profile_link %></strong><br />
+    <%= f.text_field :twitter_profile_link, :placeholder =>"default_text Enter your Last_name" %></td></tr>
+  </div>
+
+
+    <%= f.hidden_field :user_id, :value=>current_user %>
+
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Linked_in_Profile_Link %></strong><br />
+    <%= f.text_field :linked_in_profile_link, :placeholder =>"default_text Enter your Last_name" %></td></tr>
+  </div>
+
+<div class="field">
+<tr>
+    <td><strong><%= f.label :Google_plus_profile_path %></strong><br />
+    <%= f.text_field :google_plus_profile_link, :placeholder =>"default_text Enter your Last_name" %></td></tr>
+  </div>
+
+
+<tr>
+<div class ="field">
+   <td><b><%= f.label :'Cooking interests' %></b><br /> 
+   <%= f.text_area :about_me, :size=>'75x6',  :class => "mceEditor" %></td></tr>
+</div>
+
+<tr>
+<div class ="field">
+   <td><b><%= f.label :'Upload Profile Image' %></b><br /> 
+          <%= f.file_field :photo %>
+</div>
+
+  <div class="actions">
+   <tr><td><%= f.submit %></td></tr>
+  </div>
+
+<% end %>
+</table>

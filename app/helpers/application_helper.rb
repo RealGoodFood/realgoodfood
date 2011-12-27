@@ -14,12 +14,14 @@ module ApplicationHelper
 
 
 
-  def default_text(text)
-     onFocusFunction = "field = event.target || event.srcElement; if (field.value=='#{text}') {field.value = '';}else {return false}"
-     onBlurFunction = "field = event.target || event.srcElement; if (field.value=='') {field.value = '#{text}';}else {return false}"
-     {:value => text, :onfocus => onFocusFunction, :onblur => onBlurFunction} 
-  end
+def time_tag(date_or_time, *args)
+  options  = args.extract_options!
+  format   = options.delete(:format) || :long
+  content  = args.first || I18n.l(date_or_time, :format => format)
+  datetime = date_or_time.acts_like?(:time) ? date_or_time.xmlschema : date_or_time.rfc3339
 
+  content_tag(:time, content, options.reverse_merge(:datetime => datetime))
+end
 
 def title(page_title)
   content_for(:title) { page_title }

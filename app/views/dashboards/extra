@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if user_signed_in? %>
+<h4 style= "background-color:gray;align-text:left;align:right"> 
+    <%= image_tag current_user.profile.photo.url(:icon) %>
+    <%= link_to "My Account", edit_user_registration_path %> | 
+    <%= link_to 'Create mail', new_sent_path %> |
+    <%= link_to "Inbox", inbox_path %> |
+    <%= link_to "Sent", sent_path %> |
+    <%= link_to "Trash", trash_path %>
+</div>
+</h4>
+
+<div class="accordion-container">
+	<!--accordion-->
+	<ul>
+	<li class="block" id="block_1">
+        <a class="header" href="#block_1">
+        Latest meal Requests(<%= MemberAttendingEventRegister.find_all_by_owner_id_and_state(current_user, 'request_sent').count %>)
+        </b></a><div class="arrow"></div>
+
+
+
+
+<li class="block" id="block_2">
+  <a class="header" href="#block_2">My Meals:</a>
+   <div class="arrow"></div>
+<div>
+<p>
+      <% @event.each do |m| %><div class= "meal">
+	       <p><%= image_tag m.photo.url(:thumb) %>
+                    <h2><%= link_to m.name, m %></h2>
+                    Created at :<%= link_to m.created_at.strftime("%B #{m.created_at.day.ordinalize}, %Y") %></p>
+          <% end %>
+</div>
+    <%= will_paginate @event, :class => 'pagination ajax' %>
+
+
+<% end %>
+ </p>
+</div></div></li></ul></div>

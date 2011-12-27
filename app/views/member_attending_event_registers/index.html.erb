@@ -1,0 +1,29 @@
+<h1>Listing member_attending_event_registers</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>User</th>
+    <th>Owner</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @member_attending_event_registers.each do |member_attending_event_register| %>
+  <tr>
+    <td><%= member_attending_event_register.event_id %></td>
+    <td><%= member_attending_event_register.user_id %></td>
+    <td><%= member_attending_event_register.owner_id %></td>
+    <td><%= member_attending_event_register.state %></td>
+    <td><%= link_to 'Show', member_attending_event_register %></td>
+    <td><%= link_to 'Edit', edit_member_attending_event_register_path(member_attending_event_register) %></td>
+    <td><%= link_to 'Destroy', member_attending_event_register, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Member attending event register', new_member_attending_event_register_path %>

@@ -1,0 +1,41 @@
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+
+function login() {
+  var email = $('#user_email').val();
+  var password = $('#user_password').val();
+  var data = {remote: true, commit: "Sign in", utf8: "✓",
+              user: {remember_me: 1, password: password, email: email}};
+  $.post('/users/sign_in.json', data, function(resp) {
+    if(resp.success) {
+      // process success case
+    } else {
+      // let the user know they failed authentication
+    }
+  });
+  return false;
+}
+
+
+$(function() {
+  $("#listing_food_category_name").tokenInput("/food_categories.json", {
+    crossDomain: false,
+    prePopulate: $("#listing_food_category_name").data("pre"),
+    theme: "facebook"
+  });
+});
+
+$(function (){
+ $('#event_event_starting_on').datepicker();
+    dateFormat: "yy-mm-dd"
+ });
+
+$(function(){
+  $("#event_event_ending_on").datepicker({
+    dateFormat: "yy-mm-dd"
+  });
+});
+
+$(document).ready(function(){
+  $('input.ui-datepicker').datepicker();
+});

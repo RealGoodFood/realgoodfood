@@ -1,6 +1,16 @@
 class Listing < ActiveRecord::Base
 
-#Validation =====================================================================================
+ #attr_reader :food_category_name
+ #attr_accessible :food_category_name
+
+  geocoded_by :location_address  
+  after_validation :geocode  
+  after_validation :geocode, :if => :location_address_changed?  
+
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
+
+ #Validation =====================================================================================
 
  #validates_presence_of :title
  #validates_uniqueness_of :title, :message => "Category is alreadey taken"
@@ -20,7 +30,6 @@ class Listing < ActiveRecord::Base
  belongs_to :user
  belongs_to :food_category
  has_many   :comments, :dependent => :destroy
- belongs_to :user
  belongs_to :profile
  belongs_to :eat_by_date
  belongs_to :location
@@ -38,14 +47,13 @@ class Listing < ActiveRecord::Base
        :small    =>    "400x400>"
       }  
 
+
 #has_attached_file :photo, :styles => { :small => "150x150>" },
  #                 :url  => "/assets/listings/:id/:style/:basename.:extension",
  #                 :path => ":rails_root/public/assets/listings/:id/:style/:basename.:extension"
 
-#validates_attachment_presence :photo
-#validates_attachment_size :photo, :less_than => 5.megabytes
-#validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+validates_attachment_presence :photo
+validates_attachment_size :photo, :less_than => 5.megabytes
+validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  
-	
 end

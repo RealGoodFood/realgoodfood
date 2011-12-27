@@ -5,7 +5,7 @@ body {
 	background-color:#ffffff;
 	background-image:none;
 	color:#8B8B8B;
-	font: Georgia, "Times New Roman", Times, serif;
+	font: Ubuntu;
 	margin:0px;
 	padding:0px;
 	font-size:13px;
@@ -175,9 +175,9 @@ width:403px; margin:0px 29px; font-family:Tahoma, Geneva, sans-serif; font-size:
 	border-radius:8px;
 	behavior: url(border-radius.htc);
 	color:#2B5600;
-	font-family:Tahoma, Verdana, Geneva, sans-serif;
+	font-family:inherit,Verdana,Geneva,sans-serif;
 	font-size:11px;
-	margin-bottom:20px;
+	margin-top:20px;
 }
 
 .left { float:left; }
@@ -527,7 +527,7 @@ a.paging-text-prev:hover, a.paging-text-next:hover, a.paging-text-sel {
 }
 
 #logo-inner-main {
-	height:145px;
+	height:130px;
 	float:left;
 	margin:0px;
 	padding:0px;
@@ -826,3 +826,39 @@ a.button-save-cancel:hover span{background-position:right -93px;}
 .tag4 { font-size: 35px; 
 	font-family:Tahoma, Geneva, sans-serif;
  }
+
+
+input.boton {
+    font-family: Ubuntu,sans-serif;
+    overflow: visible;
+}
+
+input.boton {
+    background-color: #515151;
+    border-style: solid;
+    color: #FFFFFF;
+    font-size: 100%;
+    padding: 2px 3px !important;
+    vertical-align: top;
+    border-radius: 8px 8px 8px 8px;
+}
+
+#header {
+    color: #333333;
+    font-size: 80%;
+}
+
+div.wrapper-wide {
+    text-align: left;
+}
+
+.styled-select select {
+   background: #444444;
+   color:#fff;
+   width: 200px;
+   padding: 5px;
+   font-size: 14px;
+   border: 1px solid #ccc;
+   height: 30px;
+}
+

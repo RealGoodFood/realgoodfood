@@ -1,0 +1,22 @@
+<% @loc.each do |list| %>
+<% list.listings.each do |listings| %>
+
+
+<% if listings.photo.exists? then %>
+	<%= image_tag listings.photo.url(:icon) %>
+<% end %>
+
+<p>
+<b>Title:</b>
+<%= listings.title %>
+</p>
+
+<p>
+<b>Food category:</b>
+<%= listings.food_category.name %>
+</p>
+
+
+
+<% end %>
+<% end %>

@@ -1,0 +1,254 @@
+<head>
+ <%= stylesheet_link_tag "scaffolds","jquery.ui.all.css","demo.css","real-good-food.css","tabmenu-inner.css" %>
+ <%= javascript_include_tag "application","jquery-1.6.2.js","jquery-1.6.1.min.js",
+                            "jquery.ui.core.js","jquery.ui.widget.js",
+                            "jquery.ui.datepicker.js" %>
+ <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#tabs div').hide();
+$('#tabs div:first').show();
+$('#tabs ul li:first').addClass('active');
+$('#tabs ul li a').click(function(){ 
+$('#tabs ul li').removeClass('active');
+$(this).parent().addClass('active'); 
+var currentTab = $(this).attr('href'); 
+$('#tabs div').hide();
+$(currentTab).show();
+return false;
+});
+});
+</script>
+
+<%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
+<%= stylesheet_link_tag 'text-expand.css' %>	
+
+
+	<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+	</script>
+</head>
+
+<body>
+
+<body>
+<div id="sitewrapper">
+  <div id="logo-inner-main">
+    <div class="logo-inner">
+      <a href="/">
+       <img src="/images/logo.jpg" width="136" height="123" alt="logo" />
+      </a>
+    </div>
+
+    <div class="logo-inner-right">
+      <div class="clear"></div>
+      <ul class="nav-inner-main">
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="#">Groups</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div id="gutter">&nbsp; </div>
+  <div id="maincontainer">
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+
+          <div class="user-iconbg">
+              <%= image_tag current_user.profile.photo.url(:profile)  %>
+          </div>
+
+          <div class="username-title">
+            <%= current_user.profile.full_name %>
+          </div>
+          <div>
+            <strong>Member Since:</strong><br />
+               <div class="username-title">
+                 <%= time_tag current_user.created_at %>
+               </div>
+            <strong>Last Login:</strong><br />
+              <div class="username-title">
+                 <%= time_tag current_user.last_sign_in_at %>
+              </div> 
+         </div>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">User Option</div>
+          <ul class="inner-left-right-link">
+            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
+            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
+            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
+            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
+            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">Latest Events</div>
+          <br />
+            <% @latest_event.each do |le| %>
+              <%= link_to le.name, le %><hr />
+            <% end %>
+         </div>
+      </div>
+    </div>
+
+
+<div id="center-inner-container">
+<h1>Add an Event</h1>
+
+<%= form_for(@event, :html => {:multipart => true}) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>	
+
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="field">
+    <b><%= f.label :title %></b><br />
+    <%= f.text_field :name, 
+                     :placeholder=>"food listing name",
+                     :class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br /><br />
+
+  <div class="field">
+    <%= f.label :Description %>
+    <%= f.text_area :event_description,
+                    :size => "55x10",
+                    :class=>"inner-inputarea-large",
+                    :id=>"textarea" %>
+  </div><br />
+
+  <div class="field">
+    <%= f.label :starting_on %><br />
+    <%= f.date_select :event_starting_on %>
+  </div><br />
+
+  <div class="field">
+    <%= f.label :ending_on %><br />
+    <%= f.date_select :event_ending_on %>
+  </div><br />
+
+<!--  <%= f.label :event_category do %>
+  <%= f.select :event_category_id, EventCategory.all.map { |r| [r.name, r.id]},
+             :prompt => "Select An Event Category", :id =>"thechoices" %>
+  <% end %><br /> -->
+
+
+<!-- the select -->
+<div class="styled-select">
+<div class="field">
+  <%= f.label :'Event Category' %><br />
+    <select id="thechoices">
+	<option value=0>Please Select an Event Type</option>
+	<option value=1>Potluck</option>
+	<option value=2>Swap</option>
+	<option value=3>Collaborative Cooking event</option>
+	<option value=4>Dinner Party</option>
+    </select>
+</div>
+</div>
+<!-- the DIVs -->
+<div id="boxes">
+
+    <div id=0>
+      <p></p>
+    </div>
+
+    <div id=1>
+      <%= render :partial => 'potluck', :locals => {:f => f} %>
+    </div>
+
+    <div id=2>
+       <p><%= render :partial => 'swap', :locals => {:f => f} %></p>
+    </div>
+
+    <div id=3>
+       <p><%= render :partial => 'collaborative_cooking_event', :locals => {:f => f} %></p>
+    </div>
+
+    <div id=4>
+       <p><%= render :partial => 'dinner_party', :locals => {:f => f} %></p>
+    </div>
+
+</div>
+
+<!-- the jQuery -->
+<%= javascript_include_tag 'jquery-1.6.2.js' %>
+<script type="text/javascript">
+
+$("#thechoices").change(function(){
+    $("#" + this.value).show().siblings().hide();
+});
+
+$("#thechoices").change();
+
+
+ $('#event_event_starting_on').datetimepicker({
+	ampm: true
+});
+
+
+</script>
+<br/><br />
+
+<%= f.submit %>
+
+</div>
+<br />
+<% end %>
+</body>
+
+  <div id="footer">
+    <div class="left">
+
+      <div class="logo-footer">
+        <img src="/images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
+      </div>
+
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved
+      </div>
+
+    </div>
+
+    <div class="right">
+      <a href="#">How does it work?</a> |
+      <a href="#">Learn more</a> |
+      <a href="#">Events</a> |
+      <a href="#">Sigh up</a> |
+      <a href="#">Contact us</a>
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+  
+</div>
+
+</body>
+</html>
+

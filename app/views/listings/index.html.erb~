@@ -1,0 +1,31 @@
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+</head>
+
+<body style="width: 98%;">
+
+<h1>Listing listings</h1>
+<div style="width: 1000px; margin: 0 auto 0 auto;">
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Food category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @listings.each do |listing| %>
+  <tr>
+    <td><%=link_to listing.title, listing %></td>
+    <td><%= link_to listing.food_category.name, listing.food_category %></td>
+    <td><%= link_to 'Add to Events', {:action => 'add_to_event', :id => listing} %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h3><a href="/listings/new" class="button-save-cancel"><span>New Listing</span></a></h3>
+

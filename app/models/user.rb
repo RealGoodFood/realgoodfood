@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  has_many :sent_messages, :class_name => "Message", :foreign_key => "author_id"
-  has_many :received_messages, :class_name => "MessageCopy", :foreign_key => "recipient_id"
-  has_many :folders
+  has_many   :events
+  belongs_to :group
+  has_many   :sent_messages, :class_name => "Message", :foreign_key => "author_id"
+  has_many   :received_messages, :class_name => "MessageCopy", :foreign_key => "recipient_id"
+  has_many   :folders
+  has_one    :profile
 
   before_create :build_inbox
 
@@ -22,7 +25,4 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :group_id
 
-  has_many :events
-  #has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  belongs_to :group
 end

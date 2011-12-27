@@ -1,12 +1,15 @@
 RgfNew::Application.routes.draw do
 
+  resources :member_attending_event_registers
+
   root :to => "home#index"
 
   get "events/update_events"
   get "home/index"
-  get 'listings/autocomplete_food_category_name'
   get "listings/tag/"
   get "listings/add_to_event"
+  post 'member_attending_event_registers/accept', :as => 'accept'
+  post 'member_attending_event_registers/reject', :as => 'reject'
 
   resources :mailbox	
   resources :dashboards
@@ -22,8 +25,18 @@ RgfNew::Application.routes.draw do
   resources :event_categories
   resources :groups
   resources :profiles
-  resources :locations
-  resources :events
+
+  resources :locations do 
+    collection do
+        get  :search
+    end 
+  end
+
+  resources :events do
+     member do
+       get  :event_attendence
+     end
+  end
   resources :food_categories
   resources :eat_by_dates
   resources :values

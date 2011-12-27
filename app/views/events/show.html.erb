@@ -1,5 +1,129 @@
-<%= image_tag @event.photo.url %>
-<br />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Real Good Food</title>
+<%= stylesheet_link_tag 'real-good-food.css','tabmenu-inner.css',"jquery.ui.all.css","demo.css","jquery-ui-timepicker-addon.css" %>
+<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css" %>
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+                           "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js",
+                           "application" %>
+<%= javascript_include_tag "application","jquery-1.6.2.js","autocomplete-rails.js",
+                           "jquery.ui.core.js","jquery.ui.widget.js",
+                           "jquery.ui.datepicker.js","jquery-ui-timepicker-addon.js" %>
+<%= javascript_include_tag"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
+<%= csrf_meta_tag %>
+
+<script>
+jQuery(function() {
+jQuery("#start_date").datepicker();
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#tabs div').hide();
+$('#tabs div:first').show();
+$('#tabs ul li:first').addClass('active');
+$('#tabs ul li a').click(function(){ 
+$('#tabs ul li').removeClass('active');
+$(this).parent().addClass('active'); 
+var currentTab = $(this).attr('href'); 
+$('#tabs div').hide();
+$(currentTab).show();
+return false;
+});
+});
+</script>
+<%= javascript_include_tag "switchcontent.js","switchicon.js" %>
+<%= stylesheet_link_tag 'text-expand.css' %>
+</head>
+
+<body>
+<div id="sitewrapper">
+  <div id="logo-inner-main">
+    <div class="logo-inner">
+      <a href="/">
+       <img src="/images/logo.jpg" width="136" height="123" alt="logo" />
+      </a>
+    </div>
+
+    <div class="logo-inner-right">
+      <div class="clear"></div>
+      <ul class="nav-inner-main">
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="#">Groups</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="gutter">&nbsp; </div>
+  <div id="maincontainer">
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+         <div class="user-iconbg">
+           <%= image_tag current_user.profile.photo.url(:profile) %>
+         </div>
+          <div class="username-title">
+           <%= current_user.profile.full_name %>
+          </div>
+          <div>
+            <strong>Member Since:</strong><br />
+               <div class="username-title">
+                 <%= time_tag current_user.created_at %>
+               </div>
+            <strong>Last Login:</strong><br />
+              <div class="username-title">
+                 <%= time_tag current_user.last_sign_in_at %>
+              </div> 
+         </div>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">User Option</div>
+          <ul class="inner-left-right-link">
+            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
+            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
+            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
+            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
+            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">
+             Latest Events
+          </div>
+          <br />
+          August 10, 2011 – Arlington Farmers Market
+          2:30 pm, Farmers Markets
+          <hr />
+          August 10, 2011 – Arlington Farmers Market
+          2:30 pm, Farmers Markets
+          <hr />
+          August 10, 2011 – Arlington Farmers Market
+          2:30 pm, Farmers Markets
+        </div>
+      </div>
+    </div>
+
+
+
+
+<div id="center-inner-container">
+
+<p>
+  <b>Event Type Name:</b>
+  <%= @event.event_category.name %>
+</p>
+
 
 <p>
   <b>Name:</b>
@@ -33,16 +157,77 @@
 
 <p>
   <b>Owner:</b>
-  <%= @event.user.email %>
+  <%= @event.user.profile.full_name %>
 </p>
 
-   <b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
+<b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
 <br /><br />
 
 <b><%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'List All Events', events_path %> |
 <%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %></b>
 <br /><br /><br />
+<br /><br /><br />
 
 <%= gmaps4rails(@json) %>
+</div>
+
+<div style ="float:right">
+    <div id="left-container">
+      <div class="right-box-border">
+
+        <div class="right-box-main">
+          <div>
+
+           <p class="mb10">
+
+
+           <table width="96%" border="0" align="right" cellpadding="0" cellspacing="0">
+             <tr>
+                <td width="89%">
+		  <% if @event.photo.exists? then %>
+                   <%= image_tag @event.photo.url(:small) %>
+                  <% end %>
+                </td>
+             </tr>
+           </table>
+        </p></div>
+<strong>
+<h1>
+<style>
+h1 {
+     font-size:20px;
+     text-align:center;
+    }
+
+a:link {
+color:#208488;
+font-weight:bold;
+text-decoration:none;
+}
+
+a: visited {
+color:#208488;
+font-weight: bold;
+text-decoration:none;
+}
+
+a: hover {
+color:#ff00;
+font-weight: bold;
+text-decoration:none;
+}
+
+a:active{
+color:#fff0;
+font-weight: bold;
+text-decoration:none;
+}
+</style>
+<p></p>
+<h1><%= link_to "I want to Join this Event", event_attendence_event_path(:event_id => @event) %>
+</h1>
+</strong>
+
+</div></div>
 

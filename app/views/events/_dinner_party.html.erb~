@@ -1,0 +1,25 @@
+<br /><br />
+  <div class="field">
+    <%= f.label :'Event Location' %><br />
+    <%= f.text_area :address, :placeholder => 'address of the event',
+                    :size =>'60x4',
+                    :class=>"inner-inputarea-large",
+                    :id=>"textarea" %>
+
+  </div><br />
+
+
+  <div class="field">
+       <%= f.select :no_of_guests,
+           [1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28,29,30],
+           {:prompt =>"Select Seats"}, { :index => nil } %>
+  </div><br />
+
+  <div class="field">
+     <%= f.file_field :photo,
+                      :class=>"inner-inputbox-large",
+                      :id=>"textfield" %>
+  </div><br />
+

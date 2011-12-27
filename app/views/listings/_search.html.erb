@@ -1,0 +1,70 @@
+<head>
+<style>
+
+.blue, a.blue {
+    background: -moz-linear-gradient(center top , #4995CE, #0654A1) repeat scroll 0 0 transparent;
+    border: 0px solid #00526F;
+    color: #D9EEF7;
+    text-shadow: 1px 2px 3px #000000;
+}
+
+.button, a.button, 
+    #new_comment .submit input, 
+    #login_form .submit input {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-block;
+    font: 14px/100% Arial,Helvetica,sans-serif;
+    margin: 0 2px;
+    outline: medium none;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    vertical-align: baseline;
+    width: auto;
+}
+
+input {
+    font-size: 14px;
+    padding: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#search-form
+#header #search-form {
+}
+
+#header #search-form {
+    color: #FFFFFF;
+    text-align:left;
+    right: 10px;
+    top: 10px;
+}
+
+#header #feedblitz, #header #search-form {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 3px 0px #000000;
+    padding: 3px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+</style>
+</head>
+
+<div id="header">
+<div id ="search-form">
+<%= form_tag search_locations_path, :method => :get, :remote => true do %>
+  <%= text_field_tag :search, params[:search],
+                     :id => 'search_field',
+                     :placeholder =>"find listing enter location name", :size=>'30' %>
+  <%= submit_tag "find Listing", :name => nil, :class=>"button blue", :value=>"Go" %> 
+<% end %> 
+</div>
+</div>

@@ -1,6 +1,12 @@
 class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.xml
+
+  def search
+    @loc = Location.search params[:search]
+logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+@loc.inspect
+  end
+
   def index
    @locations = Location.all
    @json = Location.find(:all).to_gmaps4rails
@@ -44,10 +50,10 @@ class LocationsController < ApplicationController
   # POST /locations.xml
   def create
     @location = Location.new(params[:location])
-    @location.user_id = current_user.id
+    @location.profile_id = current_user.profile.id
     respond_to do |format|
       if @location.save
-        format.html { redirect_to(new_profile_path, :notice => 'Location was successfully created. please Create your Profile') }
+        format.html { redirect_to(dashboards_path, :notice => 'Location was successfully created. please Create your Profile') }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
         format.html { render :action => "new" }
@@ -63,7 +69,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
-        format.html { redirect_to(@location, :notice => 'Location was successfully updated.') }
+        format.html { redirect_to(dashboards_path, :notice => 'Location was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

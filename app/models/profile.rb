@@ -1,16 +1,31 @@
 class Profile < ActiveRecord::Base
+  
+ validates_presence_of :full_name
 
-acts_as_taggable_on :tags
-acts_as_tagger
+ extend FriendlyId
+ friendly_id :full_name, :use => :slugged
 
- belongs_to :user
- belongs_to :food_category
- has_many   :comments, :dependent => :destroy
+ acts_as_taggable_on :tags
+ acts_as_tagger
+
  belongs_to :user
  belongs_to :listing
  belongs_to :eat_by_date
- belongs_to :location
- has_many   :values
- belongs_to :location
+ belongs_to :food_category
+ has_and_belongs_to_many :values
+ has_many   :comments
+ has_one    :location
+
+
+  has_attached_file :photo,
+     :styles  =>
+      {
+       :icon     =>    "50x50", 
+       :thumb    =>    "100x100",
+       :profile  =>    "247x231", 
+       :small    =>    "400x400>"
+      }
+
+
 
 end
