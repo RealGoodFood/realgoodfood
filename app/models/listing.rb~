@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
   after_validation :geocode, :if => :location_address_changed?  
 
   extend FriendlyId
-  friendly_id :title, :use =-> :slugged
+  friendly_id :title, :use => :slugged
 
  #Validation =====================================================================================
 

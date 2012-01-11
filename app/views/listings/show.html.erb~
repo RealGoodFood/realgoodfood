@@ -17,9 +17,7 @@
 
 
 <div id ="listing_side_bar">
-<% if @listing.photo.exists? then %>
-	<%= image_tag @listing.photo.url(:small) %>
-<% end %>
+
 </div>
 
 
