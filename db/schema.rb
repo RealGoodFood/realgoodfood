@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015080226) do
+ActiveRecord::Schema.define(:version => 20120127124936) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20111015080226) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "location_id"
+    t.string   "event_type"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|

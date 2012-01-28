@@ -161,7 +161,8 @@ return false;
         
        </div>
          <div style="display: none;" id="faq3" class="icongroup1"> 
-          <%= @profile.location.address %>
+          <!-- 
+            -->
          </div>
                
           <div class="eg-bar" "="">

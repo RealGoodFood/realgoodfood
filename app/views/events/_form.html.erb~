@@ -134,6 +134,12 @@ return false;
   </div><br /><br />
 
   <div class="field">
+    <%= f.label :'Event Type' %><br>
+    <%= select(:event, :event_type,
+                 ['Potluck','Swap','Dinner Party','Collaborative Cooking Event']) %>
+  </div><br />
+
+  <div class="field">
     <%= f.label :Description %>
     <%= f.text_area :event_description,
                     :size => "55x10",
@@ -157,43 +163,6 @@ return false;
   <% end %><br /> -->
 
 
-<!-- the select -->
-<div class="styled-select">
-<div class="field">
-  <%= f.label :'Event Category' %><br />
-    <select id="thechoices">
-	<option value=0>Please Select an Event Type</option>
-	<option value=1>Potluck</option>
-	<option value=2>Swap</option>
-	<option value=3>Collaborative Cooking event</option>
-	<option value=4>Dinner Party</option>
-    </select>
-</div>
-</div>
-<!-- the DIVs -->
-<div id="boxes">
-
-    <div id=0>
-      <p></p>
-    </div>
-
-    <div id=1>
-      <%= render :partial => 'potluck', :locals => {:f => f} %>
-    </div>
-
-    <div id=2>
-       <p><%= render :partial => 'swap', :locals => {:f => f} %></p>
-    </div>
-
-    <div id=3>
-       <p><%= render :partial => 'collaborative_cooking_event', :locals => {:f => f} %></p>
-    </div>
-
-    <div id=4>
-       <p><%= render :partial => 'dinner_party', :locals => {:f => f} %></p>
-    </div>
-
-</div>
 
 <!-- the jQuery -->
 <%= javascript_include_tag 'jquery-1.6.2.js' %>

@@ -1,5 +1,5 @@
 <h1>Listing food_categories</h1>
-<li><%= @fc %></li>
+
 <table>
   <tr>
     <th>Name</th>
@@ -18,6 +18,6 @@
 <% end %>
 </table>
 
-<br />
+
 
 <%= link_to 'New Food category', new_food_category_path %>

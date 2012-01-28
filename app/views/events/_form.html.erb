@@ -134,6 +134,12 @@ return false;
   </div><br /><br />
 
   <div class="field">
+    <%= f.label :'Event Type' %><br>
+    <%= select(:event, :event_type,
+                 ['Potluck','Swap','Dinner Party','Collaborative Cooking Event']) %>
+  </div><br />
+
+  <div class="field">
     <%= f.label :Description %>
     <%= f.text_area :event_description,
                     :size => "55x10",

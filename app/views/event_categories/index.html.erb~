@@ -11,6 +11,7 @@
 <% @event_categories.each do |event_category| %>
   <tr>
     <td><%= event_category.name %></td>
+    <td><%= event_category.no_of_participants %></td>
     <td><%= link_to 'Show', event_category %></td>
     <td><%= link_to 'Edit', edit_event_category_path(event_category) %></td>
     <td><%= link_to 'Destroy', event_category, :confirm => 'Are you sure?', :method => :delete %></td>
