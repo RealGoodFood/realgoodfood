@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Real Good Food</title>
-     <%= stylesheet_link_tag "scaffolds",'styles' %>
+     <%= stylesheet_link_tag "scaffolds",'styles','real-good-food.css','tabmenu.css','text-expand.css' %>
      <%= javascript_include_tag "application" %>
      <%= csrf_meta_tag %>
      <%= yield(:head) %>
@@ -15,6 +15,12 @@
 </head>
 
 <body><br />
+
+   <div class="left">
+        <a href="/">
+          <img src="images/logo.jpg" width="136" height="123" alt="logo" />
+        </a>
+    </div>
  <% if user_signed_in? %>
       <div class="clear">
              <%= render :partial => 'listings/search' %>
@@ -31,16 +37,16 @@
           <b style ="font-size:10px"><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class=>"btn red" %></b>
 
     <% else %>
-         <div style ="float:right;margin-right:30px">
+         <div style ="float:right;margin-right:150px">
            <p>
-             <b><%= link_to 'LOGIN', new_user_session_path, :class=>"btn green" %></b>  
+             <b><%= link_to 'login', new_user_session_path %></b>  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <b><%= link_to 'REGISER',new_user_registration_path, :class=>"btn " %></b>
+             <b><%= link_to 'register',new_user_registration_path %></b>
            </p>
               <% end %>
          </div>    
 </div>
-
+<div class="clear"></div>
     <div id="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -48,6 +54,28 @@
 
 
 <%= yield %>
+</div>
+
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/N6P8vkpbG5yQM8xFRMGVkA.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
+
+   <div id="footer">
+    <div class="left">
+      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="/how_it_works">How does it work?</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/terms_and_conditions">Terms and Conditions</a> | <a href="/users/sign_up">Sign up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+</div>
 
 </body>
 <%= yield :scripts %>

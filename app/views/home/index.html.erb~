@@ -42,9 +42,8 @@ $(document).ready(function() {
 
 <div id="sitewrapper">
 
-
     <div class="left">
-        <a href="index.html">
+        <a href="/">
           <img src="images/logo.jpg" width="136" height="123" alt="logo" />
         </a>
     </div>
@@ -53,12 +52,10 @@ $(document).ready(function() {
 
 <div class="top-nav">
        <span>
-           <a href="#"><%= link_to "Listings", listings_path %></a>
-           <a href="#"><%= link_to "Events", events_path %></a>
-           <a href="#"><%= link_to "All Groups", groups_path %></a>
-           <a href="#">Latest Listings</a>
-           <a href="#">Latest Events</a> 
-
+           <a href="#"><%= link_to "Discover Food", listings_path %></a>
+           <a href="#"><%= link_to "Attend Events", events_path %></a>
+           <a href="#"><%= link_to "Join Local Groups", groups_path %></a>
+           <a href="blogs">Read our Blog</a>
       </span>
 </div>
 
@@ -71,7 +68,6 @@ $(document).ready(function() {
       <div class="ribbon"></div>
 
         <div id="slider" class="nivoSlider">
-          <img src="images/header.jpg" alt="" />
           <img src="images/header2.jpg" alt="" />
           <img src="images/header3.jpg" alt="" />
         </div>
@@ -105,18 +101,12 @@ $(document).ready(function() {
 
     <ul class="tabs">
         <li><a href="#tab1"><span>Events</span></a></li>
-        <li><a href="#tab2"><span>Group</span></a></li>
-       
+        <li><a href="#tab2"><span>Groups</span></a></li>
+        <li><a href="#tab3"><span>Listings</span></a></li>
         
 
     </ul>
-    <div class="event-search-bg"><span>
-    <div class="left">
-            <input name="" type="text"  class="events-inputbox"/>
-          </div>
-            <div class="right"><a href="#"><img src="images/search-event.png" alt="search icon" /></a></div>
-    
-    </span></div>
+ 
     <div class="tab_container">
         <div id="tab1" class="tab_content">
           <% @event.each do |e| %>
@@ -154,27 +144,47 @@ $(document).ready(function() {
        <% end %>
         </div>
         
-        
+             <div id="tab3" class="tab_content">
+          <% @listing.each do |l| %>
+          <div class="tabmenu-contain-main">
+           <div class="tabmenu-contain-image">
+            <% if l.photo.exists? then %>
+ 	     <%= image_tag l.photo.url(:thumb) %>
+            <% end %>
+           </div>
+          <div class="tabmenu-contain-teaxright"><h5><%= time_tag l.created_at %></h5>
+            <h6><%= link_to l.title, l %></h6>
+          </div>
+        </div>
+       <% end %>
+        </div>
+
     </div>
 </div>
      
     </div>
     <div id="righ-container">
-      <h3>Search New Good Food</h3>
+      <h3>Search Real Good Food</h3>
       <div class="right-box-border">
         <div class="right-box-main">
-          <div class="googlemap-seare-area">
-            <div class="left">
-              <input name="" type="text"  class="google-map-inputbox"/>
-            </div>
-            <div class="right"><a href="#"><img src="images/search-icon-rightside.png" width="28" height="29" alt="search icon" /></a></div>
-          </div>
           <div class="left">
-                  <iframe width="231" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;q=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Washtenaw,+Michigan+48109-1050&amp;aq=&amp;sll=37.926868,-95.712891&amp;sspn=36.344092,79.013672&amp;vpsrc=0&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+207+Fletcher+St,+Ann+Arbor,+Michigan+48109-1050&amp;ll=42.280354,-83.740313&amp;spn=0.017526,0.038581&amp;t=m&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small> 
+           <div> 
+<iframe width="231" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=University+of+Michigan,+1011+N+University+Ave,+Ann+Arbor,+Washtenaw,+Michigan+48109&amp;sll=19.075984,72.877656&amp;sspn=0.658017,1.229095&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+1011+N+University+Ave,+Ann+Arbor,+Michigan+48109&amp;t=m&amp;z=14&amp;ll=42.278371,-83.737179&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;q=University+of+Michigan,+1011+N+University+Ave,+Ann+Arbor,+Washtenaw,+Michigan+48109&amp;sll=19.075984,72.877656&amp;sspn=0.658017,1.229095&amp;ie=UTF8&amp;geocode=FaIlhQIdZzkC-w&amp;split=0&amp;hq=&amp;hnear=University+of+Michigan,+1011+N+University+Ave,+Ann+Arbor,+Michigan+48109&amp;t=m&amp;z=14&amp;ll=42.278371,-83.737179" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 
+</div>
           </div>
         </div>
       </div>
+  <h3>RGF on Social Media</h3>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com/RealGoodFood" target="blank"><%= image_tag "facebook.png"%></a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://twitter.com/realgoodfood" target="blank"><%= image_tag "twitter.png"%></a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#"><%= image_tag "youtube.png"%></a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#"><%= image_tag "googleplus.png"%></a>
+        </div>
+      </div>
+
       <div class="right-box-border">
         <div class="right-box-main"> <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -190,21 +200,11 @@ $(document).ready(function() {
         </div>
       </div>
 
-      <h3>Follow us</h3>
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <a href="#" class="facebook-icon"></a>
-          <a href="#" class="twitter-  icon"></a>
-          <a href="#" class="rss-icon"></a>
-          <a href="#" class="myspace-icon"></a>
-          <a href="#" class="delicious-icon"></a>
-        </div>
-      </div>
-    </div>
+    
     <div id="center-right-inner-container">
      <%= yield %>
     </div>
-
+<!--
   <div id="footer">
     <div class="left">
       <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
@@ -212,10 +212,11 @@ $(document).ready(function() {
         Real Good Food.com, <br />
         All rights Reserved</div>
     </div>
-    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+    <div class="right"><a href="/how_it_works">How does it work?</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/terms_and_conditions">Terms and Conditions</a> | <a href="/users/sign_up">Sign up</a> | <a href="#">Contact us</a></div>
   </div>
   <div class="clear"></div>
-</div>
+</div> -->
+
 <script type="text/javascript" src="javascripts/jquery-1.6.1.min.js"></script> 
 <script type="text/javascript" src="javascripts/jquery.nivo.slider.pack.js"></script> 
 <script type="text/javascript">
@@ -223,4 +224,5 @@ $(document).ready(function() {
         $('#slider').nivoSlider();
     });
     </script>
+
 

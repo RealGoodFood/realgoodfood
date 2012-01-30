@@ -48,7 +48,7 @@ before_filter :authenticate_user!
   # GET /events/new.xml
   def new
     @event = Event.new
-    @latest_event = Event.where(:created_at => 1.days.ago .. 1.days.from_now)
+    #@latest_event = Event.where(:created_at => 1.days.ago .. 1.days.from_now)
   end
 
   # GET /events/1/edit

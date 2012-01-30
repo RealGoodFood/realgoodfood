@@ -1,5 +1,7 @@
 RgfNew::Application.routes.draw do
 
+  resources :blogs
+
   resources :member_attending_event_registers
 
   root :to => "home#index"

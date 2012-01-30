@@ -18,6 +18,9 @@
   <b>Description:</b>
   <%= @group.description %>
 </p>
+<p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@group.latitude}%2C#{@group.longitude}" %>
+</p>
 
 
 <div style = "font-size:15px">

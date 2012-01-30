@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Real Good Food</title>
-<%= stylesheet_link_tag 'real-good-food.css','text-expand.css' %>
+<%= stylesheet_link_tag 'real-good-food.css','text-expand.css' , 'tabmenu.css'%>
 <%= javascript_include_tag "application","switchcontent.js","switchicon.js" %>
 
 <script type="text/javascript">
@@ -91,9 +91,9 @@ function swichtabs(wert) {
           <ul class="inner-left-right-link">
             <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
             <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
-            <li><a href="change-password.html">Change Password</a></li>
-            <li><a href="add-food-listing.html">Add a food listing</a></li>
-            <li><a href="add-event.html">Add an event</a></li>
+            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
+            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
+            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
           </ul>
         </div>
       </div>
@@ -315,16 +315,6 @@ faq.init()
         All rights Reserved</div>
     </div>
 
-    <div class="right">
-      <a href="#">How does it work?</a> |
-      <a href="#">Learn more</a> |
-      <a href="#">Events</a> |
-      <a href="#">Sigh up</a> |
-      <a href="#">Contact us</a>
-    </div>
-  </div>
-  <div class="clear"></div>
-</div>
-
+    
 </body>
 </html>
