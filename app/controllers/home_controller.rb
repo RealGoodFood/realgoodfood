@@ -6,4 +6,10 @@ class HomeController < ApplicationController
     @listing  = Listing.paginate(:page => params[:page], :per_page => 3)
   end
 
+  def how_it_works
+  end
+  def privacy_policy
+  end
+  def terms_and_conditions 
+  end
 end

@@ -14,9 +14,13 @@ rake db:seed
 
 rails s
 
-Known Issues to be cleared within this week :
+What is it ? 
 
-Issues in Uploading Image using paperclip. Uses Gravatar http://en.gravatar.com/ at the moment.
-Homepage Maps / FB to be activated 
+a food exchange network
 
+People :
+
+Deving McIntire : devin@realgoodfood.org
+Saurabh Bhatia : saurabh@safewlabs.com
+Sudhir Vishwakarma : sudhir@safewlabs.com
 

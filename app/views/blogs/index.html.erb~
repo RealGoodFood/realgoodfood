@@ -1,6 +1,7 @@
 
 <% @blogs.each do |blog| %>
-    <%= blog.title %><br /><%= blog.created_at %><br /><br />
+    <h2><%= blog.title %></h2><br /><%= blog.created_at %><br /><br />
     <%= truncate(blog.body.html_safe, :length => 350) %>&nbsp;&nbsp;<%= link_to 'Read More', blog %><br /><br />
 <% end %>
 
+<%= paginate @blogs %>
