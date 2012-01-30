@@ -17,3 +17,4 @@ gem 'formtastic'
 gem "geocoder"
 gem 'jquery-rails'
 gem 'jquery_datepicker'
+gem 'kaminari'
