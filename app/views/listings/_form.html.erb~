@@ -49,7 +49,6 @@ return false;
   <div id="logo-inner-main">
     <div class="logo-inner">
       <a href="/">
-       <img src="/images/logo.jpg" width="136" height="123" alt="logo" />
       </a>
     </div>
 

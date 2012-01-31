@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Real Good Food</title>
-     <%= stylesheet_link_tag 'real-good-food.css','nivo-theme.css','nivo-slider.css','tabmenu.css' ,'scaffold.css'%>
+     <%= stylesheet_link_tag 'real-good-food.css','nivo-theme.css','nivo-slider.css','tabmenu.css' %>
      <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css" %>
      <%= javascript_include_tag "application" %>
      <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
@@ -47,30 +47,7 @@ $(document).ready(function() {
           <img src="images/logo.jpg" width="136" height="123" alt="logo" />
         </a>
     </div>
- <% if user_signed_in? %>
-      <div class="clear">
-             <%= render :partial => 'listings/search' %>
-      </div>
-      <div style="text-align:right">
 
-             <%= image_tag "home.png",:size =>"20x20" %> 
-            <b><%= link_to "Home", :controller=>"home", :action =>"index" %></b> |
-
-             <%= image_tag "Menu.png",:size =>"20x20" %> 
-             <b><%= link_to "My Dashbaord", dashboards_path  %>
-
-          Welcome! <b style = "color:darkgreen"><%=h current_user.email %>.</b>
-          <b style ="font-size:10px"><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class=>"btn red" %></b>
-
-    <% else %>
-         <div style ="float:right;margin-right:150px">
-           <p>
-             <b><%= link_to 'login', new_user_session_path %></b>  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <b><%= link_to 'register',new_user_registration_path %></b>
-           </p>
-              <% end %>
-         </div>    
 <div class="clear"></div>
 
 <div class="top-nav">

@@ -1,9 +1,9 @@
 <head>
- <%= stylesheet_link_tag "scaffolds","jquery.ui.all.css","demo.css","real-good-food.css","tabmenu-inner.css" %>
- <%= javascript_include_tag "application","jquery-1.6.2.js","jquery-1.6.1.min.js",
-                            "jquery.ui.core.js","jquery.ui.widget.js",
-                            "jquery.ui.datepicker.js" %>
+ <%= stylesheet_link_tag "scaffolds","demo.css","real-good-food.css","tabmenu-inner.css" %>
+ <%= javascript_include_tag "application","jquery-1.6.2.js" %>
  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
+<%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
+<%= stylesheet_link_tag 'text-expand.css' %>	
 
 <script type="text/javascript">
 
@@ -22,27 +22,57 @@ return false;
 });
 </script>
 
-<%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
-<%= stylesheet_link_tag 'text-expand.css' %>	
-
-
-	<script>
-	$(function() {
-		$( "#datepicker" ).datepicker();
-	});
-	</script>
 </head>
 
 <body>
 
-<body>
+<script type="text/javascript">
+function hide_additional_information_fields() {
+	$('#event_ev_pot').parent().slideUp();
+}
+
+function reset_additional_field_values() 
+{
+	// Set 'Specify location' to 'N/A'
+	$('#event_ev_pot').val('N/A');
+}
+
+function initialize_additional_fields()
+{
+	var location = $('#event_event_type').val();
+	if(location == 'Potluck') {
+		$('#event_ev_pot').parent().slideDown();
+	} 
+	
+}
+
+ $(function() {
+ 	
+ 	hide_additional_information_fields();
+ 	reset_additional_field_values();
+ 	
+ 	$('#event_event_type').change(function() {
+ 		hide_additional_information_fields();
+ 		reset_additional_field_values();
+ 		var location = $(this).val();
+ 		if(location == 'Potluck') {
+ 			// 1. Set 'Specify degree' to ''
+ 			// 2. Display 'Specify degree' 			
+ 			$('#event_ev_pot').val('');
+ 			$('#event_ev_pot').parent().slideDown();
+ 			$('#event_ev_pot').focus();
+ 			
+ 		}  	});
+ 	
+ 	$('#event_event_type').change(function()
+ {
+ 	});
+ });
+</script>
+
+
 <div id="sitewrapper">
   <div id="logo-inner-main">
-    <div class="logo-inner">
-      <a href="/">
-       <img src="/images/logo.jpg" width="136" height="123" alt="logo" />
-      </a>
-    </div>
 
     <div class="logo-inner-right">
       <div class="clear"></div>
@@ -93,7 +123,17 @@ return false;
           </ul>
         </div>
       </div>
-
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">Latest Events</div>
+          <br />
+     <% unless @latest_events.nil? %>
+            <% @latest_event.each do |le| %>
+              <%= link_to le.name, le %><hr />
+            <% end %><% end %>
+         </div>
+      </div>
+    </div>
 
 <div id="center-inner-container">
 <h1>Add an Event</h1>
@@ -122,11 +162,6 @@ return false;
                      :id=>"textfield" %><br />
   </div><br /><br />
 
-  <div class="field">
-    <%= f.label :'Event Type' %><br>
-    <%= select(:event, :event_type,
-                 ['Potluck','Swap','Dinner Party','Collaborative Cooking Event']) %>
-  </div><br />
 
   <div class="field">
     <%= f.label :Description %>
@@ -146,30 +181,20 @@ return false;
     <%= f.date_select :event_ending_on %>
   </div><br />
 
-<!--  <%= f.label :event_category do %>
-  <%= f.select :event_category_id, EventCategory.all.map { |r| [r.name, r.id]},
-             :prompt => "Select An Event Category", :id =>"thechoices" %>
-  <% end %><br /> -->
+  <div class="styled-select">
+    <%= f.label :'Event Type' %><br>
+    <%= select(:event, :event_type,
+                 ['Swap','Dinner Party','Collaborative Cooking Event','Potluck']) %>
+  </div><br />
+
+  <div class="field">
+    <%= f.text_field :ev_pot %>
+  </div><br />
+    <%= f.text_field :ev_swap %>
+    <%= f.text_field :ev_party %>
+    <%= f.text_field :ev_collaborative %>
 
 
-
-<!-- the jQuery -->
-<%= javascript_include_tag 'jquery-1.6.2.js' %>
-<script type="text/javascript">
-
-$("#thechoices").change(function(){
-    $("#" + this.value).show().siblings().hide();
-});
-
-$("#thechoices").change();
-
-
- $('#event_event_starting_on').datetimepicker({
-	ampm: true
-});
-
-
-</script>
 <br/><br />
 
 <%= f.submit %>
@@ -183,7 +208,7 @@ $("#thechoices").change();
     <div class="left">
 
       <div class="logo-footer">
-        <img src="/images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
+        <img src="../images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
       </div>
 
       <div class="left">Copyright © 2011 <br />

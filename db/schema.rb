@@ -54,19 +54,23 @@ ActiveRecord::Schema.define(:version => 20120130165621) do
     t.integer  "no_of_guests"
     t.integer  "no_of_guests_attending", :default => 0
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.text     "address"
     t.boolean  "gmaps"
+    t.integer  "event_category_id"
+    t.string   "ev_pot",                 :default => "N/A"
+    t.string   "ev_swap",                :default => "N/A"
+    t.string   "ev_collaborative",       :default => "N/A"
+    t.string   "ev_party",               :default => "N/A"
+    t.integer  "location_id"
+    t.string   "event_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "event_category_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "location_id"
-    t.string   "event_type"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|

@@ -1,4 +1,5 @@
-<%= simple_form_for @profile  , :html => { :multipart => true } do |f| %>
+<div style = "margin-left:90px;padding-left:2px">
+<%= form_for @profile  , :html => { :multipart => true } do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -17,7 +18,7 @@
     <td><strong><%= f.label :'Full Name' %></strong><br />
     <%= f.text_field :full_name, :placeholder=>"Enter your First_name" %></td>
    </tr>
-</div>
+</div><br>
 
 <div class="field">
 <tr>
@@ -94,3 +95,4 @@
 
 <% end %>
 </table>
+</div>

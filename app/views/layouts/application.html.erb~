@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Real Good Food</title>
-     <%= stylesheet_link_tag "scaffolds",'styles','real-good-food.css','tabmenu.css','text-expand.css' %>
+     <%= stylesheet_link_tag "scadffolds" %>
      <%= javascript_include_tag "application" %>
      <%= csrf_meta_tag %>
      <%= yield(:head) %>
@@ -18,7 +18,7 @@
 
    <div class="left">
         <a href="/">
-          <img src="images/logo.jpg" width="136" height="123" alt="logo" />
+          <img src="../images/logo.jpg" width="136" height="123" alt="logo" />
         </a>
     </div>
  <% if user_signed_in? %>
@@ -64,29 +64,6 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script>
-
-  <div id="footer">
-    <div class="left">
-      <div class="logo-footer">
-        <img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
-      </div>
-      <div class="left">Copyright © 2011 <br />
-        Real Good Food.com, <br />
-        All rights Reserved</div>
-    </div>
-
-   <div id="footer">
-    <div class="left">
-      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
-      <div class="left">Copyright © 2011 <br />
-        Real Good Food.com, <br />
-        All rights Reserved</div>
-    </div>
-    <div class="right"><a href="/how_it_works">How does it work?</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/terms_and_conditions">Terms and Conditions</a> | <a href="/users/sign_up">Sign up</a> | <a href="#">Contact us</a></div>
-  </div>
-  <div class="clear"></div>
-</div>
-
 </body>
 <%= yield :scripts %>
 </html>

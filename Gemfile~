@@ -14,7 +14,8 @@ gem 'paperclip'
 gem "friendly_id", "~> 4.0.0.beta8"
 gem 'workflow'
 gem 'formtastic'
-gem 'rails3-jquery-autocomplete'
 gem "geocoder"
 gem 'jquery-rails'
 gem 'jquery_datepicker'
+gem 'kaminari'
+gem 'mongrel'
