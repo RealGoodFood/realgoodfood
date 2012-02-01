@@ -8,17 +8,11 @@
 <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
                            "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js",
                            "application" %>
-<%= javascript_include_tag "application","jquery-1.6.2.js","autocomplete-rails.js",
+<%= javascript_include_tag "jquery-1.6.2.js","autocomplete-rails.js",
                            "jquery.ui.core.js","jquery.ui.widget.js",
                            "jquery.ui.datepicker.js","jquery-ui-timepicker-addon.js" %>
 <%= javascript_include_tag"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
 <%= csrf_meta_tag %>
-
-<script>
-jQuery(function() {
-jQuery("#start_date").datepicker();
-});
-</script>
 
 <script type="text/javascript">
 
@@ -121,7 +115,7 @@ return false;
 
 <p>
   <b>Event Type Name:</b>
-  <%= @event.event_category.name %>
+  <%= @event.event_type %>
 </p>
 
 
@@ -163,6 +157,23 @@ return false;
 <b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
 <br /><br />
 
+<% if @event.event_type=="Potluck" %>
+<table border>
+   <tr>
+     <th> Food Name </th>
+     <th> Food For People </th>
+     <th> Food Type </th>
+   </tr>
+  <% @event.potlucks.each do |p| %>
+    <tr>
+     <td><%= p.food_name %></td>
+     <td><%= p.food_for_people %></td>
+     <td><%= p.food_type %></td>
+    </tr>
+  <% end %>
+ </table>
+<% end %>
+<br>
 <b><%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'List All Events', events_path %> |
 <%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %></b>

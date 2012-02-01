@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130165621) do
+ActiveRecord::Schema.define(:version => 20120201092537) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -186,9 +186,18 @@ ActiveRecord::Schema.define(:version => 20120130165621) do
     t.datetime "updated_at"
   end
 
+  create_table "potlucks", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "food_name"
+    t.integer  "food_for_people"
+    t.string   "food_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profiles", :force => true do |t|
     t.string   "full_name"
-    t.integer  "contact_number"
+    t.string   "contact_number"
     t.date     "date_of_birth"
     t.integer  "value_id"
     t.integer  "user_id"

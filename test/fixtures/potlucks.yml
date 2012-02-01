@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  food_name: MyString
+  food_for_people: 1
+  food_type: MyString
+
+two:
+  event_id: 1
+  food_name: MyString
+  food_for_people: 1
+  food_type: MyString

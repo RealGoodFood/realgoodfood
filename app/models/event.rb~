@@ -1,12 +1,14 @@
 class Event < ActiveRecord::Base
 
   has_many :groups  
-  belongs_to :profile
-  belongs_to :user
-  has_and_belongs_to_many :listings
+  has_many :potlucks
   has_many :member_attending_event_registers, :dependent => :destroy
   has_many :users, :through => :member_attending_event_registers
 
+  belongs_to :profile
+  belongs_to :user
+  belongs_to :event_category
+  has_and_belongs_to_many :listings
 
   has_attached_file :photo,
      :styles  =>

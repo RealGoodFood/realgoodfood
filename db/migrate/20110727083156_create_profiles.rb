@@ -2,7 +2,7 @@ class CreateProfiles < ActiveRecord::Migration
   def self.up
     create_table :profiles do |t|
       t.string  :full_name
-      t.integer :contact_number
+      t.string :contact_number
       t.date    :date_of_birth
       t.integer :value_id
       t.integer :user_id

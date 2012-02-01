@@ -45,13 +45,21 @@ function swichtabs(wert) {
 <body>
 <div id="sitewrapper">
   <div id="logo-inner-main">
+    <div class="logo-inner">
+      <a href="index.html">
+       <img src="images/logo.jpg" width="136" height="123" alt="logo" />
+      </a>
+    </div>
 
     <div class="logo-inner-right">
-      <div class="clear"></div>
+
+    <div class="clear"></div>
       <ul class="nav-inner-main">
+        <li><a href="/events">Events</a></li>
+        <li><a href="/listings">Listings</a></li>
         <li><a href="#">Search</a></li>
         <li><a href="#">Browse</a></li>
-        <li><a href="#">Groups</a></li>
+        <li><a href="/groups">Groups</a></li>
       </ul>
     </div>
   </div>
@@ -62,6 +70,7 @@ function swichtabs(wert) {
       <div class="right-box-border">
         <div class="right-box-main">
          <div class="user-iconbg">
+           <%= image_tag current_user.profile.photo.url(:profile) %>
          </div>
           <div class="username-title">
            <%= current_user.profile.full_name %>
@@ -84,7 +93,7 @@ function swichtabs(wert) {
           <div class="inner-left-right-side-title">User Option</div>
           <ul class="inner-left-right-link">
             <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
-            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
+            <li><a><%= link_to 'My Profile', profile_path(current_user.profile.slug) %></a></li>
             <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
             <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
             <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
@@ -298,7 +307,17 @@ faq.init()
       </div>
     </div>
   </div>
-
+  <div id="footer">
+    <div class="left">
+      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="/how_it_works">How does it work?</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/terms_and_conditions">Terms and Conditions</a> | <a href="/users/sign_up">Sign up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+</div>
     
 </body>
 </html>

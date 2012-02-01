@@ -52,13 +52,17 @@ function swichtabs(wert) {
     </div>
 
     <div class="logo-inner-right">
-      <div class="clear"></div>
+
+    <div class="clear"></div>
       <ul class="nav-inner-main">
+        <li><a href="/events">Events</a></li>
+        <li><a href="/listings">Listings</a></li>
         <li><a href="#">Search</a></li>
         <li><a href="#">Browse</a></li>
-        <li><a href="#">Groups</a></li>
+        <li><a href="/groups">Groups</a></li>
       </ul>
     </div>
+
   </div>
 
   <div id="gutter">&nbsp; </div>
@@ -90,7 +94,7 @@ function swichtabs(wert) {
           <div class="inner-left-right-side-title">User Option</div>
           <ul class="inner-left-right-link">
             <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
-            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
+            <li><a><%= link_to 'My Profile', profile_path(current_user.profile.slug) %></a></li>
             <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
             <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
             <li><a><%= link_to 'Add an Event', new_event_path %></a></li>

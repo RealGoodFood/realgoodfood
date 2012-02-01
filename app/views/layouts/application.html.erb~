@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Real Good Food</title>
-     <%= stylesheet_link_tag "scadffolds" %>
+     <%= stylesheet_link_tag "scaffolds",'styles','real-good-food.css','tabmenu.css','text-expand.css' %>
      <%= javascript_include_tag "application" %>
      <%= csrf_meta_tag %>
      <%= yield(:head) %>

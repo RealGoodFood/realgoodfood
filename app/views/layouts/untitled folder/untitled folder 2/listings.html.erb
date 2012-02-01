@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Real Good Food</title>
+  <%= stylesheet_link_tag 'real-good-food.css','tabmenu-inner.css' %>
+  <%# javascript_include_tag 'jquery.min.js' %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#tabs div').hide();
+$('#tabs div:first').show();
+$('#tabs ul li:first').addClass('active');
+$('#tabs ul li a').click(function(){ 
+$('#tabs ul li').removeClass('active');
+$(this).parent().addClass('active'); 
+var currentTab = $(this).attr('href'); 
+$('#tabs div').hide();
+$(currentTab).show();
+return false;
+});
+});
+</script>
+<%= javascript_include_tag 'switchcontent.js' %>
+<%= javascript_include_tag 'switchicon.js' %>
+<%= stylesheet_link_tag 'text-expand.css' %>
+
+<% stylesheet_link_tag :all %>
+<%= javascript_include_tag :defaults %>
+
+
+<script type="text/javascript" src="js/switchcontent.js"></script>
+<script type="text/javascript" src="js/switchicon.js"></script>
+<link href="css/text-expand.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="sitewrapper">
+  <div id="logo-inner-main">
+    <div class="logo-inner"><a href="index.html"><img src="../images/logo.jpg" width="136" height="123" alt="logo" /></a> </div>
+    <div class="logo-inner-right">
+      <div class="signin-top-link"> 
+			<%= render :partial => 'shared/global_links' %>
+</div>
+      <div class="clear"></div>
+      <ul class="nav-inner-main">
+	<li><a href="/listings">Listings</a></li>        
+	<li><a href="/events">Events</a></li>
+        <li><a href="/groups">Groups</a></li>
+        <li><a href="/locations">Locations</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="gutter">&nbsp; </div>
+  <div id="maincontainer">
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="user-iconbg"> <%= gravatar_image_tag(current_user.email.downcase,
+                                            :alt => current_user.email,
+                                            :class => 'gravatar',
+                                            :gravatar => {:size => 150}) %></div>
+          <div class="username-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.email %></div>
+          <div>
+               <strong>Member Since:</strong><br /> <%= current_user.created_at %><hr/>
+               <strong>Last Login:</strong><br /> <%= current_user.last_sign_in_at %><hr />         </div>
+        </div>
+      </div>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">User Option</div>
+          <ul class="inner-left-right-link">
+            <li><a href="my-dashboard.html">My Dashboard</a></li>
+            <li><a href="my-profile.html">My Profile</a></li>
+            <li><a href="change-password.html">Change Password</a></li>
+            <li class="sel"><a href="add-food-listing.html">Add a food listing</a></li>
+            <li><a href="add-event.html">Add an event</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">Latest Events</div>
+          <br />
+         <% Event.where(:created_at => 2.days.ago .. 2.days.from_now).each do |e| %>
+           <%= e.event_starting_on %> -- <%= e.name %> , --- <%= e.address %> <hr />
+         <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="center-inner-container">
+
+<%= yield %>
+
+    </div>
+
+
+
+
+
+
+
+<%# tag cloud %>
+
+
+<p class="mb10"> Tag Cloud </p>
+
+<div id="left-container">
+      <div class="right-box-border">
+	
+			<% tag_cloud @number_of_tags, %w(tag1 tag2 tag3 tag4) do |tag, css_class| %>
+    				<%= link_to tag.name, {:action => :tag, :id => tag.name }, :class => css_class %>
+				<%# link_to tag.name, :class => css_class %>
+				<%# link_to listing.food_category.name, listing.food_category %>
+  				<% end %>
+		
+	</div>
+</div>
+
+<%# end of tag cloud %>
+
+
+
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div>
+        <p class="mb10"> <a href="javascript:faq.sweepToggle('contract')" class="expandlink">Contract All</a> | <a href="javascript:faq.sweepToggle('expand')" class="expandlink">Expand All</a>
+        <div class="eg-bar">
+        
+        <table width="96%" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="11%"><span id="faq1-title" class="iconspan1"><img src="../images/minus.gif" /></span></td>
+    <td width="89%">Add to an Event</td>
+
+  </tr>
+</table>
+
+
+<td>
+
+
+</td>
+
+
+        
+<% i = 0 %>
+<% Event.find(:all).each do |user_type| %>  
+        </div>
+        <div style="display: block;" id="faq1" class="icongroup1">
+          <table width="80%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><input type="checkbox" class="check" name="types[]" value="<%= user_type.name %>" /></td>
+              <td width="84%"><%= user_type.name %></td>
+                  <% i = i + 1 %>
+		  <% if i > 2 %>
+                  <% i = 0 %>
+		  <% end %><% end %><hr />
+              </tr>
+          </table>
+        </div>
+        <div class="eg-bar" "="">
+        
+        <table width="96%" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="11%"><span id="faq2-title" class="iconspan1"><img src="../images/plus.gif" /></span></td>
+    <td width="89%">Select users</td>
+  </tr>
+</table>
+        
+        
+        
+       </div>
+        <div style="display: none;" id="faq2" class="icongroup1"> Add Filter by my Groups Lorem ipsum </div>
+        <div class="eg-bar" "="">
+        
+        <table width="96%" border="0" align="right" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="11%"><span id="faq3-title" class="iconspan1"><img src="/images/plus.gif" /></span></td>
+    <td width="89%">Select groups</td>
+  </tr>
+</table>
+        
+        </div>
+        <div style="display: none;" id="faq3" class="icongroup1"> Add my locations Lorem ipsum </div>
+        
+        <script type="text/javascript">
+
+var faq=new switchicon("icongroup1", "div") //Limit scanning of switch contents to just "div" elements
+faq.setHeader('<img src="..images/minus.gif" />', '<img src="/images/plus.gif" />') //set icon HTML
+faq.collapsePrevious(true) //Allow only 1 content open at any time
+faq.setPersist(false) //No persistence enabled
+faq.defaultExpanded(0) //Set 1st content to be expanded by default
+faq.init()
+
+  </script>
+        </p>
+      </div>
+        </div>
+      </div>
+      
+      
+  </div>
+
+      
+      
+
+  <div id="footer">
+    <div class="left">
+      <div class="logo-footer"><img src="../images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+  
+</div>
+
+</body>
+			
+</html>
