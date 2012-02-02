@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :potlucks
 
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 
   has_attached_file :photo,
      :styles  =>

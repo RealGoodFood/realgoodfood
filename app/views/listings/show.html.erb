@@ -1,52 +1,49 @@
-<style>
-#listing_side_bar {
-	position:absolute;
-	top:90px;
-	left:20px;
-	width:272px;
-        font-size:10px;
-	padding:10px;
-	background-color:#eee;
-	border:1px solid #00f;
-	line-height:17px;
-	voice-family: "\"}\"";
-	voice-family:inherit;
-	width:225px;
-	}
-</style>
-
-
-<div id ="listing_side_bar">
-<% if @listing.photo.exists? then %>
-	<%= image_tag @listing.photo.url(:small) %>
+<div style ="float:right">
+ <% if @listing.user_id == current_user.id %>
+  (<%= link_to 'Edit', edit_listing_path(@listing) %> |
+  <%= link_to 'Remove', @listing, :confirm => 'Are you sure?', :method => :delete %>)
+  <a href="/listings/" class="button-save-cancel"><span>View All Listings</span></a>
+<% else %>
+  <a href="/listings/" class="button-save-cancel"><span>View All Listings</span></a>
 <% end %>
 </div>
 
+<div style="height:200px; width:400px; border: 1px solid black;border-radius: 6px;">
+<% if @listing.photo.exists? then %>
+	<%= image_tag @listing.photo.url, :size =>"400x200" %>
+<% end %>
+</div>
 
+<br><br>
 <p>
 <b>Title:</b>
 <%= @listing.title %>
 </p>
+<br>
 
 <p>
 <b>Food category:</b>
 <%= @listing.food_category.name %>
 </p>
+<br>
 
 <p>
 <b>Description:</b>
 <%= @listing.description %>
 </p>
+<br>
 
 <p>
 <b>Start date:</b>
 <%= time_tag @listing.start_date %>
 </p>
+<br>
 
 <p>
 <b>End date:</b>
 <%= time_tag @listing.end_date %>
 </p>
+<br>
 
 <table>
 <b>Food type:</b><br />
@@ -56,42 +53,37 @@
 </tr>
 <% end %>
 </table>
+<br>
 
 <p>
-<b>Availablity Duration:</b><br />
+<b>Availablity Duration:</b>&nbsp;&nbsp;
 <% if ( @listing.end_date - Date.today() ).to_i < 0 %>
 <p style = color:darkorange;font-size:20px> <b>"Sorry !..this Listing Has Expired "</b> </p>
 <% else %>
 <%= distance_of_time_in_words(Time.now, @listing.end_date +  50.minute) %></td>
 <% end %>
 </p>
+<br>
 
 <p>
-<b>Eat by date:</b>
+<b>Suggested Storage:</b>
 <%= @listing.eat_by_date.name %>
 </p>
-<hr />
-<h3>
+<hr>
 
+<p>
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@listing.latitude}%2C#{@listing.longitude}" %>
+</p>
 <br />
-<% if @listing.user_id == current_user.id %>
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Destroy', @listing, :confirm => 'Are you sure?', :method => :delete %> |
-<a href="/listings/" class="button-save-cancel"><span>View All</span></a>
-<% else %>
-<%= link_to 'List All', listings_path %> 
-<% end %>
-</h3>
 
-</table>
-<br /><br />
+
 <table cellspacing='0' class="Design4">
 <% unless @listing.comments.empty? %>
-  <h2> 
-	<u><%= pluralize(@listing.comments.size, 'comment') %></u>
-  </h2>
-  
+  <b> 
+	<%= pluralize(@listing.comments.size, 'comment') %>
+  </b>
+  <br>
+
  <% for comment in @listing.comments %>
 
 <tr>
@@ -105,6 +97,7 @@
          <%= h comment.user.email  %>
      </strong>
       <em>on <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %></em>
+<br>
     </td>
 </tr>
     <td><%= simple_format comment.content %><hr /></td>

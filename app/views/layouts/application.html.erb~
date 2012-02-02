@@ -1,69 +1,150 @@
-<!DOCTYPE html>
-<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Real Good Food</title>
-     <%= stylesheet_link_tag "scaffolds",'styles','real-good-food.css','tabmenu.css','text-expand.css' %>
-     <%= javascript_include_tag "application" %>
-     <%= csrf_meta_tag %>
-     <%= yield(:head) %>
-     <script type="text/javascript">var switchTo5x=true;</script>
-     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-     <script type="text/javascript">stLight.options({publisher:'932ad91f-b109-4577-8805-a4d7a2368fec'});
-     </script>
+<title>Real Good Food </title>
+<%= stylesheet_link_tag "scaffolds","demo.css",
+                        "real-good-food.css",
+                        "tabmenu-inner.css",'text-expand.css','tab-menu-dashboard.css',
+                        "tabmenu.css" %>
+
+<%= javascript_include_tag "application","jquery-1.6.2.js" %>
+<%= javascript_include_tag "switchcontent.js","switchicon.js" %>
+<%= javascript_include_tag  "nested_form" %>
+<%= javascript_include_tag"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
+<%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
+<%= stylesheet_link_tag 'text-expand.css' %>	
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#tabs div').hide();
+$('#tabs div:first').show();
+$('#tabs ul li:first').addClass('active');
+$('#tabs ul li a').click(function(){ 
+$('#tabs ul li').removeClass('active');
+$(this).parent().addClass('active'); 
+var currentTab = $(this).attr('href'); 
+$('#tabs div').hide();
+$(currentTab).show();
+return false;
+});
+});
+</script>
 
 </head>
 
-<body><br />
 
-   <div class="left">
-        <a href="/">
-          <img src="../images/logo.jpg" width="136" height="123" alt="logo" />
-        </a>
+<body>
+<% if user_signed_in? %>
+<div id="sitewrapper">
+
+  <div id="logo-inner-main">
+
+    <div class="logo-inner"><a href="/">
+      <img src="../images/logo.jpg" width="136" height="123" alt="logo" /></a>
     </div>
- <% if user_signed_in? %>
-      <div class="clear">
-             <%= render :partial => 'listings/search' %>
+    <div class="logo-inner-right">
+<% unless current_user.profile.nil? %>
+      <div class="signin-top-link"> Welcome <u><%= current_user.profile.full_name %></u>&nbsp;
+      <a>|&nbsp;<%= link_to "Log out", destroy_user_session_path, :method => :delete %></a>&nbsp;
+      <a href="/dashboards">| Dashboard</a>
+      <a href="#">| Settings</a>
+    </div>
+<% end %>
+    <div class="clear"></div>
+      <ul class="nav-inner-main">
+        <li><a href="/events">Events</a></li>
+        <li><a href="/listings">Listings</a></li>
+        <li><a href="/groups">Groups</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="gutter">&nbsp; </div>
+  <div id="maincontainer">
+    <div id="left-container">
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="user-iconbg">
+<% unless current_user.profile.nil? %>
+              <%= image_tag current_user.profile.photo.url(:profile)  %>
+<% end %>
+          </div>
+
+          <div class="username-title">
+            <% unless current_user.profile.nil? %><%= current_user.profile.full_name %><% end %>
+          </div>
+          <div>
+            <strong>Member Since:</strong>
+                 <div class="username-title">
+                   <%= time_tag current_user.created_at %>
+                 </div>
+            <strong>Last Login:</strong>
+                 <div class="username-title">
+                   <%= time_tag current_user.last_sign_in_at %>
+                 </div> 
+          </div>
+        </div>
       </div>
-      <div style="text-align:right">
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">User Option</div>
+          <ul class="inner-left-right-link">
+            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
+            <% unless current_user.profile.nil? %>
+            <li><a><%= link_to 'My Profile', profile_path(current_user.profile.slug) %></a></li>
+            <% end %>
+            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
+            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
+            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">Latest Events</div>
+           <% Event.find(:all).each do |e| %>
+          <br />
+          <%= image_tag e.photo.url(:icon)  %>
+          <%= e.name %>
+          <hr />
+          <% end %></div>
+      </div>
+    </div>
 
-             <%= image_tag "home.png",:size =>"20x20" %> 
-            <b><%= link_to "Home", :controller=>"home", :action =>"index" %></b> |
-
-             <%= image_tag "Menu.png",:size =>"20x20" %> 
-             <b><%= link_to "My Dashbaord", dashboards_path  %>
-
-          Welcome! <b style = "color:darkgreen"><%=h current_user.email %>.</b>
-          <b style ="font-size:10px"><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class=>"btn red" %></b>
-
-    <% else %>
-         <div style ="float:right;margin-right:150px">
-           <p>
-             <b><%= link_to 'login', new_user_session_path %></b>  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <b><%= link_to 'register',new_user_registration_path %></b>
-           </p>
-              <% end %>
-         </div>    
-</div>
-<div class="clear"></div>
-    <div id="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-
-
-<%= yield %>
-</div>
-
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/N6P8vkpbG5yQM8xFRMGVkA.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
-</script>
+<% end %>
+    <div id="center-right-inner-container">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+      <%= yield %>
+    </div>
 </body>
-<%= yield :scripts %>
+
+  <div id="footer">
+    <div class="left">
+       <div class="logo-footer">
+         <img src="../images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
+       </div>
+      <div class="left">Copyright © 2011 <br />
+        Real Good Food.com, <br />
+        All rights Reserved</div>
+    </div>
+    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<script type="text/javascript" src="../javascripts/jquery-1.6.1.min.js"></script> 
+<script type="text/javascript" src="../javascripts/jquery.nivo.slider.pack.js"></script> 
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+		$(".eg-bar").removeAttr("style");
+    });
+	
+	function showContent()
+	{
+		
+	$(".eg-bar").removeAttr("style");	
+	}
+    </script>
 </html>

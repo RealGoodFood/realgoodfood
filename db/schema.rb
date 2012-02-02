@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201092537) do
+ActiveRecord::Schema.define(:version => 20120202111355) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120201092537) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "slug"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|

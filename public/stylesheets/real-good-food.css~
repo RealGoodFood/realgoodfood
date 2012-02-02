@@ -136,7 +136,7 @@ width:403px; margin:0px 29px; font-family:Tahoma, Geneva, sans-serif; font-size:
 #event-container ul { margin: 0; padding: 0; }
 #event-container ul li { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
 #event-container ul li a { display: block; padding: 5px; outline: none; }
-#event-container ul li a:hover { text-decoration: none; }
+#event-container ul li a:hover { text-decoration: underline; }
 #event-container ul li.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
 #event-container ul li a.active { font-weight: bold; }
 #event-container .panel-container { border: solid 1px; padding: 0 10px; }

@@ -1,31 +1,3 @@
-<head>
-<%= stylesheet_link_tag "scaffolds","demo.css","real-good-food.css","tabmenu-inner.css" %>
-<%= javascript_include_tag "application","jquery-1.6.2.js" %>
-<%= javascript_include_tag  "nested_form" %>
-<%= javascript_include_tag"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
-<%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
-<%= stylesheet_link_tag 'text-expand.css' %>	
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-$('#tabs div').hide();
-$('#tabs div:first').show();
-$('#tabs ul li:first').addClass('active');
-$('#tabs ul li a').click(function(){ 
-$('#tabs ul li').removeClass('active');
-$(this).parent().addClass('active'); 
-var currentTab = $(this).attr('href'); 
-$('#tabs div').hide();
-$(currentTab).show();
-return false;
-});
-});
-</script>
-
-</head>
-
-<body>
 
 
 <script type="text/javascript">
@@ -112,76 +84,9 @@ function initialize_additional_fields()
 </script>
 
 
-<div id="sitewrapper">
-  <div id="logo-inner-main">
-
-    <div class="logo-inner-right">
-
-    <div class="clear"></div>
-      <ul class="nav-inner-main">
-        <li><a href="/events">Events</a></li>
-        <li><a href="/listings">Listings</a></li>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Browse</a></li>
-        <li><a href="/groups">Groups</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-
-  <div id="gutter">&nbsp; </div>
-  <div id="maincontainer">
-    <div id="left-container">
-      <div class="right-box-border">
-        <div class="right-box-main">
-
-          <div class="user-iconbg">
-              <%= image_tag current_user.profile.photo.url(:profile)  %>
-          </div>
-
-          <div class="username-title">
-            <%= current_user.profile.full_name %>
-          </div>
-          <div>
-            <strong>Member Since:</strong><br />
-               <div class="username-title">
-                 <%= time_tag current_user.created_at %>
-               </div>
-            <strong>Last Login:</strong><br />
-              <div class="username-title">
-                 <%= time_tag current_user.last_sign_in_at %>
-              </div> 
-         </div>
-        </div>
-      </div>
-
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">User Option</div>
-          <ul class="inner-left-right-link">
-            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
-            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
-            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
-            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
-            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">Latest Events</div>
-          <br />
-     <% unless @latest_events.nil? %>
-            <% @latest_event.each do |le| %>
-              <%= link_to le.name, le %><hr />
-            <% end %><% end %>
-         </div>
-      </div>
-    </div>
 
 <div id="center-inner-container">
-<h1>Add an Event</h1>
+
 
 <%= nested_form_for(@event, :html => {:multipart => true}) do |f| %>
   <% if @event.errors.any? %>
@@ -227,6 +132,11 @@ function initialize_additional_fields()
   </div><br />
 
   <div class="field">
+    <%= f.label :UploadAnImage %><br />
+    <%= f.file_field :photo %>
+  </div><br />
+
+  <div class="field">
     <%= f.label :Address %><br />
     <%= f.text_field :address,
                      :class=>"inner-inputbox-large",
@@ -269,7 +179,9 @@ function initialize_additional_fields()
 </div>
 
   <div class="field">
-   Swap :<br> <%= f.text_field :ev_swap %>
+   <br><p> <%= f.check_box :ev_swap %> Listings enabled but not required</p>
+        <%= f.check_box :ev_swap %> Listings enabled and required</p>
+        <%= f.check_box :ev_swap %> No Listings enabled</p>
   </div>
 
   <div class="field">
@@ -288,36 +200,4 @@ function initialize_additional_fields()
 </div>
 <br />
 <% end %>
-</body>
-
-  <div id="footer">
-    <div class="left">
-
-      <div class="logo-footer">
-        <img src="../images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
-      </div>
-
-      <div class="left">Copyright © 2011 <br />
-        Real Good Food.com, <br />
-        All rights Reserved
-      </div>
-
-    </div>
-
-    <div class="right">
-      <a href="#">How does it work?</a> |
-      <a href="#">Learn more</a> |
-      <a href="#">Events</a> |
-      <a href="#">Sigh up</a> |
-      <a href="#">Contact us</a>
-    </div>
-
-  </div>
-
-  <div class="clear"></div>
-  
-</div>
-
-</body>
-</html>
 

@@ -1,11 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Real Good Food</title>
-<%= stylesheet_link_tag 'real-good-food.css','text-expand.css' , 'tabmenu.css'%>
-<%= javascript_include_tag "application","switchcontent.js","switchicon.js" %>
-
 <script type="text/javascript">
 /*Important Function to blend the tabs in and out*/
 function blendoff(idname) {document.getElementById(idname).style.display = 'none';}
@@ -39,79 +31,6 @@ function swichtabs(wert) {
 	}
 }
 </script>
-<%= stylesheet_link_tag 'tab-menu-dashboard.css' %>
-</head>
-
-<body>
-<div id="sitewrapper">
-  <div id="logo-inner-main">
-    <div class="logo-inner">
-      <a href="index.html">
-       <img src="images/logo.jpg" width="136" height="123" alt="logo" />
-      </a>
-    </div>
-
-    <div class="logo-inner-right">
-
-    <div class="clear"></div>
-      <ul class="nav-inner-main">
-        <li><a href="/events">Events</a></li>
-        <li><a href="/listings">Listings</a></li>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Browse</a></li>
-        <li><a href="/groups">Groups</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div id="gutter">&nbsp; </div>
-  <div id="maincontainer">
-    <div id="left-container">
-      <div class="right-box-border">
-        <div class="right-box-main">
-         <div class="user-iconbg">
-           <%= image_tag current_user.profile.photo.url(:profile) %>
-         </div>
-          <div class="username-title">
-           <%= current_user.profile.full_name %>
-          </div>
-          <div>
-            <strong>Member Since:</strong><br />
-               <div class="username-title">
-                 <%= time_tag current_user.created_at %>
-               </div>
-            <strong>Last Login:</strong><br />
-              <div class="username-title">
-                 <%= time_tag current_user.last_sign_in_at %>
-              </div> 
-         </div>
-        </div>
-      </div>
-
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">User Option</div>
-          <ul class="inner-left-right-link">
-            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
-            <li><a><%= link_to 'My Profile', profile_path(current_user.profile.slug) %></a></li>
-            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
-            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
-            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">Latest Events</div>
-          <br />
-            <% @latest_event.each do |le| %>
-              <%= link_to le.name, le %><hr />
-            <% end %>
-         </div>
-      </div>
-    </div>
 
     <div id="center-right-inner-container">
       <h1>My Food Community</h1>
@@ -306,19 +225,6 @@ faq.init()
       <div class="pagginginarea">
         <a><%= will_paginate @event, :class => 'pagination ajax' %></a>
       </div>
-    </div>
   </div>
-  <div id="footer">
-    <div class="left">
-      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
-      <div class="left">Copyright © 2011 <br />
-        Real Good Food.com, <br />
-        All rights Reserved</div>
-    </div>
-    <div class="right"><a href="/how_it_works">How does it work?</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/terms_and_conditions">Terms and Conditions</a> | <a href="/users/sign_up">Sign up</a> | <a href="#">Contact us</a></div>
-  </div>
-  <div class="clear"></div>
-</div>
-    
-</body>
-</html>
+
+
