@@ -12,7 +12,7 @@ development:
   database: rgf_new_development
   pool: 5
   username: root
-  password: safew
+  password: saurabh
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,7 +24,7 @@ test:
   database: rgf_new_test
   pool: 5
   username: root
-  password: safew
+  password: saurabh
 
 production:
   adapter: mysql2
@@ -33,4 +33,4 @@ production:
   database: rgf_new_production
   pool: 5
   username: root
-  password: safew
+  password: saurabh
