@@ -18,5 +18,4 @@ gem "geocoder"
 gem 'jquery-rails'
 gem 'jquery_datepicker'
 gem 'kaminari'
-gem 'mongrel'
 gem "nested_form"
