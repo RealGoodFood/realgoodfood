@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 #  before_filter :authenticate_user!
-
+  
   before_filter :set_current_locale
 
   helper :all # include all helpers, all the time

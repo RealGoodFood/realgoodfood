@@ -64,6 +64,7 @@
 <%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %></b>
 
 <%= gmaps4rails(@json) %>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@event.latitude}%2C#{@event.longitude}" %>
 
 <% if @event.photo.exists? then %>
   <%= image_tag @event.photo.url(:small) %>

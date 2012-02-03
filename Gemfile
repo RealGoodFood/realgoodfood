@@ -19,3 +19,4 @@ gem 'jquery-rails'
 gem 'jquery_datepicker'
 gem 'kaminari'
 gem "nested_form"
+gem 'cancan'
