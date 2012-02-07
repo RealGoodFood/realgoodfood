@@ -37,6 +37,7 @@ GEM
     builder (2.1.2)
     cocaine (0.2.1)
     colored (1.2)
+    country_select (0.0.1)
     daemons (1.0.10)
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
@@ -124,6 +125,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   awesome_nested_set
+  country_select
   devise
   formtastic
   friendly_id (~> 4.0.0.beta8)

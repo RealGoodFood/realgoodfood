@@ -20,3 +20,4 @@ gem 'jquery_datepicker'
 gem 'kaminari'
 gem 'mongrel'
 gem "nested_form"
+gem 'country_select'

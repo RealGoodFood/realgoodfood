@@ -1,0 +1,32 @@
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>Group type:</b>
+  <%= @group.group_type %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @group.location %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @group.description %>
+</p>
+<p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@group.latitude}%2C#{@group.longitude}" %>
+</p>
+<br><br><br>
+
+<div style = "font-size:15px">
+
+  <%= link_to 'Edit', edit_group_path(@group) %> | 
+  <%= link_to 'Destroy', @group, :confirm => 'Are you sure?', :method => :delete %> | 
+  <%= link_to 'List All Groups', groups_path %> 
+
+</div>

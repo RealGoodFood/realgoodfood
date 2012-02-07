@@ -12,8 +12,8 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :potlucks
 
- # extend FriendlyId
-  #friendly_id :name, :use => :slugged
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 
   has_attached_file :photo,
      :styles  =>
@@ -24,16 +24,20 @@ class Event < ActiveRecord::Base
        :small    =>    "400x400>"
       }  
 
+   geocoded_by :event_address
 
+def event_address
+  [address,street, city, state, country].compact.join(', ')
+end
 
-  acts_as_gmappable
+#  acts_as_gmappable
 
-   def gmaps4rails_address
-    self.address
-   end
+#   def gmaps4rails_address
+#    self.address
+#   end
 
-   def gmaps4rails_infowindow
-    "<h4>#{name}</h4>" << "<h4>#{address}</h4>"
-   end
+#   def gmaps4rails_infowindow
+#    "<h4>#{name}</h4>" << "<h4>#{address}</h4>"
+#   end
 
 end

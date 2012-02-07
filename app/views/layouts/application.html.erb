@@ -7,7 +7,7 @@
 
 <%= javascript_include_tag "application","jquery-1.6.2.js" %>
 <%= javascript_include_tag "switchcontent.js","switchicon.js" %>
-<%= javascript_include_tag  "nested_form" %>
+<%= javascript_include_tag :defaults,"nested_form" %>
 <%= javascript_include_tag"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" %>
 <%= javascript_include_tag 'switchcontent.js','switchicon.js' %>
 <%= stylesheet_link_tag 'text-expand.css' %>	
@@ -33,6 +33,11 @@ return false;
 
 
 <body>
+
+<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","1beae669de3dc361b3d45a44cf18a3f5"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+</script><!-- end Mixpanel -->
+
+
 <% if user_signed_in? %>
 <div id="sitewrapper">
 
@@ -43,10 +48,10 @@ return false;
     </div>
     <div class="logo-inner-right">
 <% unless current_user.profile.nil? %>
-      <div class="signin-top-link"> Welcome <u><%= current_user.profile.full_name %></u>&nbsp;
-      <a>|&nbsp;<%= link_to "Log out", destroy_user_session_path, :method => :delete %></a>&nbsp;
+      <div class="signin-top-link">Welcome ! <b><%= current_user.profile.full_name %></b>&nbsp;
       <a href="/dashboards">| Dashboard</a>
-      <a href="#">| Settings</a>
+      <a> |&nbsp;<%= link_to "Settings", edit_user_registration_path %></a>
+      <a>|&nbsp;<%= link_to "Log out", destroy_user_session_path, :method => :delete %></a>&nbsp;
     </div>
 <% end %>
     <div class="clear"></div>
@@ -105,7 +110,11 @@ return false;
            <% Event.find(:all).each do |e| %>
           <br />
           <%= image_tag e.photo.url(:icon)  %>
-          <%= e.name %>
+           <div style = "margin:-35px -50px 50px 50px;padding-left:10px;text-style:bold">
+                <b><%= e.name %></b><br>
+                <%= time_tag e.event_starting_on %><br>to<br><%= time_tag e.event_ending_on %>  <br>
+                <%=  e.address %>
+          </div>
           <hr />
           <% end %></div>
       </div>
@@ -121,6 +130,7 @@ return false;
 </body>
 
   <div id="footer">
+
     <div class="left">
        <div class="logo-footer">
          <img src="../images/logo-bottom.jpg" width="62" height="54" alt="logo footer" />
@@ -129,7 +139,10 @@ return false;
         Real Good Food.com, <br />
         All rights Reserved</div>
     </div>
-    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
+    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sign up</a> | <a href="#">Contact us</a></div>
+
+<div align="center">
+<a href="https://mixpanel.com/f/partner"><img src="https://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div>
   </div>
   <div class="clear"></div>
 </div>

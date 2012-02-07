@@ -1,0 +1,16 @@
+<h1>All Groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+  </tr>
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %>
+    <td><%= group.location %>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'More..', group %></td>
+  </tr>
+<% end %>
+</table>

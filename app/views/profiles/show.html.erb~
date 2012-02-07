@@ -1,3 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Real Good Food</title>
+     <%= stylesheet_link_tag 'real-good-food.css','tabmenu-inner.css','nivo-slider.css','tabmenu.css' %>
+     <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css" %>
+     <%= javascript_include_tag "application" %>
+     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+                             "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+     <%= csrf_meta_tag %>
+     <%= yield(:head) %>
+     <script type="text/javascript">var switchTo5x=true;</script>
+     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+     <script type="text/javascript">stLight.options({publisher:'932ad91f-b109-4577-8805-a4d7a2368fec'});</script>
+
+</head>
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#tabs div').hide();
+$('#tabs div:first').show();
+$('#tabs ul li:first').addClass('active');
+$('#tabs ul li a').click(function(){ 
+$('#tabs ul li').removeClass('active');
+$(this).parent().addClass('active'); 
+var currentTab = $(this).attr('href'); 
+$('#tabs div').hide();
+$(currentTab).show();
+return false;
+});
+});
+</script>
+
+<%= javascript_include_tag "switchcontent.js","switchicon.js" %>
+<%= stylesheet_link_tag 'text-expand.css' %>
+
+</head>
+
+<body>
+<div id="sitewrapper">
+  <div id="logo-inner-main">
+
+    <div class="logo-inner">
+      <a href="index.html">
+        <img src="/images/logo.jpg" width="136" height="123" alt="logo" />
+      </a>
+    </div>
+
+     <div class="logo-inner-right">
+
+    <div class="clear"></div>
+      <ul class="nav-inner-main">
+        <li><a href="/events">Events</a></li>
+        <li><a href="/listings">Listings</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="/groups">Groups</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="gutter">&nbsp; </div>
+    <div id="maincontainer">
+      <div id="left-container">
+        <div class="right-box-border">
+          <div class="right-box-main">
+            <div class="user-iconbg">
+              <%= image_tag @profile.photo.url(:profile)  %>
+            </div>
+          <div class="username-title">
+            <%= current_user.profile.full_name %>
+          </div>
+          <div>
+            <strong>Member Since:</strong><br />
+               <div class="username-title">
+                 <%= time_tag @profile.user.created_at %>
+               </div>
+            <strong>Last Login:</strong><br />
+              <div class="username-title">
+                 <%= time_tag @profile.user.last_sign_in_at %>
+              </div> 
+         </div>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">User Option</div>
+          <ul class="inner-left-right-link">
+            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
+            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
+            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
+            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
+            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right-box-border">
+        <div class="right-box-main">
+          <div class="inner-left-right-side-title">Latest Events</div>
+          <br />
+            <% @latest_event.each do |le| %>
+              <%= link_to le.name, le %><hr />
+            <% end %>
+         </div>
+      </div>
+    </div>
 
     <div id="center-right-inner-container">
       <h1><%= @profile.full_name %></h1>

@@ -1,114 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Real Good Food</title>
-     <%= stylesheet_link_tag 'real-good-food.css','tabmenu-inner.css' %>
-     <%= javascript_include_tag "application" %>
-     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
-                                "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
-     <%= csrf_meta_tag %>
-     <%= yield(:head) %>
-     <script type="text/javascript">var switchTo5x=true;</script>
-     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-     <script type="text/javascript">stLight.options({publisher:'932ad91f-b109-4577-8805-a4d7a2368fec'});
-     </script>
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-$('#tabs div').hide();
-$('#tabs div:first').show();
-$('#tabs ul li:first').addClass('active');
-$('#tabs ul li a').click(function(){ 
-$('#tabs ul li').removeClass('active');
-$(this).parent().addClass('active'); 
-var currentTab = $(this).attr('href'); 
-$('#tabs div').hide();
-$(currentTab).show();
-return false;
-});
-});
-</script>
-
-<%= javascript_include_tag "switchcontent.js", "switchicon.js" %>
-<%= stylesheet_link_tag "text-expand.css" %>
-
-</head>
-
-<body>
-<div id="sitewrapper">
-  <div id="logo-inner-main">
-    <div class="logo-inner">
-       <a href="/">
-           <img src="/images/logo.jpg" width="136" height="123" alt="logo" /></a> </div>
-    <div class="logo-inner-right">
-       <div class="clear"></div>
-      <ul class="nav-inner-main">
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Listings</a></li>
-        <li><a href="#">Browse</a></li>
-        <li><a href="#">Groups</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="gutter">&nbsp; </div>
-  <div id="maincontainer">
-    <div id="left-container">
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="user-iconbg">
-              <%= image_tag current_user.profile.photo.url(:profile)  %>
-            </div>
-          <div class="username-title">
-            <%= current_user.profile.full_name %>
-          </div>
-          <div>
-            <strong>Member Since:</strong><br />
-               <div class="username-title">
-                 <%= time_tag current_user.created_at %>
-               </div>
-            <strong>Last Login:</strong><br />
-              <div class="username-title">
-                 <%= time_tag current_user.last_sign_in_at %>
-              </div> 
-         </div>
-        </div>
-      </div>
-
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">User Option</div>
-          <ul class="inner-left-right-link">
-            <li><a><%= link_to 'My Dashboard', dashboards_path %></a></li>
-            <li><a><%= link_to 'My Profile', profile_path(current_user) %></a></li>
-            <li><a><%= link_to 'Change Password', edit_user_registration_path %></a></li>
-            <li><a><%= link_to 'Add a Food Listing', new_listing_path %></a></li>
-            <li><a><%= link_to 'Add an Event', new_event_path %></a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="right-box-border">
-        <div class="right-box-main">
-          <div class="inner-left-right-side-title">Latest Events</div>
-          <br />
-          August 10, 2011 – Arlington Farmers Market
-          2:30 pm, Farmers Markets
-          <hr />
-          August 10, 2011 – Arlington Farmers Market
-          2:30 pm, Farmers Markets
-          <hr />
-          August 10, 2011 – Arlington Farmers Market
-          2:30 pm, Farmers Markets </div>
-      </div>
-    </div>
-
-    <div id="center-right-inner-container">
+<div id="center-right-inner-container">
 <h1>Change <%= resource_name.to_s.humanize %> password</h1>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name,
+                       :url => registration_path(resource_name), 
+                       :html => { :method => :put }) do |f| %>
+
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
@@ -129,35 +25,9 @@ return false;
 <br />
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
-<%= link_to "Back", :back %>
-     </div>
+<br>
 
-    <div id="footer">
-    <div class="left">
-      <div class="logo-footer"><img src="images/logo-bottom.jpg" width="62" height="54" alt="logo footer" /></div>
-      <div class="left">Copyright © 2011 <br />
-        Real Good Food.com, <br />
-        All rights Reserved</div>
-    </div>
-    <div class="right"><a href="#">How does it work?</a> | <a href="#">Learn more</a> | <a href="#">Events</a> | <a href="#">Sigh up</a> | <a href="#">Contact us</a></div>
-  </div>
-  <div class="clear"></div>
-  
+<%= link_to "Back", :back %>
+
 </div>
-<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script> 
-<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script> 
-<script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-		$(".eg-bar").removeAttr("style");
-    });
-	
-	function showContent()
-	{
-		
-	$(".eg-bar").removeAttr("style");	
-	}
-    </script>
-    
-</body>
-</html>
+

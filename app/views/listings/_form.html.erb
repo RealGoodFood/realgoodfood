@@ -38,7 +38,7 @@
 
 
   <div class="field">
-    <b><%= f.label :Listings_Location %></b><br />
+    <b><%= f.label :Listings_address %></b><br />
     <%= f.text_field :location_address,
                      :placeholder=>"Enter listings address",
                      :class=>"inner-inputbox-large",
@@ -51,11 +51,6 @@
        <%= f.date_select :start_date %>
   </div><br />
 
-  <div class="field">
-    <b><%= f.label :end_date %></b><br />
-       <%= f.date_select :end_date %>
-  </div>
-<br />
 
   <div class="field">
     <b><%= f.label :Image_Upload %></b><br />
@@ -124,6 +119,14 @@
   </div><br />
 
 </table>
+<br><br>
+  <div class="field">
+    <b><%= f.label :end_date %></b><br />
+       <%= f.date_select :end_date %>
+  </div>
+<br />
+
+
 <br />
   <div class="actions">
     <a>

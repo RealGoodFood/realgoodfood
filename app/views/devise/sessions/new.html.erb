@@ -1,14 +1,28 @@
-<h2>Sign in</h2>
+<style>
+ .login {
+         margin-left:50px;
+         padding-left:50px;
+         margin-top:50px;
+         padding-top :50px;
+         border-radius:12px;
+         border:12px solid #000000;
+         width:400px;
+         background-color:darkgreen;
+        }
+</style>
+
+<div class ="login">
+<h2>Login</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <%= f.label :email %><br />
-  <%= f.email_field :email %>
+  <%= f.email_field :email,:class=>"inner-inputbox-large",:id=>"textfield" %></td><br> 
 
   <p></p><br />
 
   <%= f.label :password %><br />
-  <%= f.password_field :password %>
+  <%= f.password_field :password,:class=>"inner-inputbox-large",:id=>"textfield" %></td><br> 
 
   <p></p><br />
 

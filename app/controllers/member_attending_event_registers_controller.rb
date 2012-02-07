@@ -55,7 +55,7 @@ class MemberAttendingEventRegistersController < ApplicationController
 
 
   def accept
-    @event_accept = MemberAttendingEventRegister.find(params[:member_attending_event_register_id])
+    @event_accept = MemberAttendingEventRegister.find(params[@member_attending_event_register.id])
 
     @event_accept.accept!
     respond_to do |format|

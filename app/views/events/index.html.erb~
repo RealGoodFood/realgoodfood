@@ -50,7 +50,7 @@ $(document).ready(function() {
 <div class="tab_container">
 
 <div id="tab1" class="tab_content">
-    <%= render :partial => 'list'  %>
+    <%= render :partial => 'list'  %><br>
   <b><%= link_to 'Create a New Event', new_event_path %></b>
    <div class="tabmenu-contain-main">
    <div class="tabmenu-contain-image">
@@ -59,7 +59,7 @@ $(document).ready(function() {
 </div>
 
 <div id="tab2" class="tab_content">
- <div><%= gmaps4rails(@json) %></div>
+ <div><%= render :partial => 'map'  %><br></div>
    <div class="tabmenu-contain-main">
      <div class="tabmenu-contain-image">
    </div>
@@ -69,5 +69,11 @@ $(document).ready(function() {
         
  </div>
 </div>
-     
+</body>
 
+<footer>     
+     <%= yield(:scripts) %>
+<%= gmaps4rails(@json).inspect %>
+
+</footer>
+</html>
