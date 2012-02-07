@@ -38,6 +38,7 @@ GEM
     cancan (1.6.7)
     cocaine (0.2.1)
     colored (1.2)
+    country_select (0.0.1)
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -121,6 +122,7 @@ DEPENDENCIES
   acts-as-taggable-on
   awesome_nested_set
   cancan
+  country_select
   devise
   formtastic
   friendly_id (~> 4.0.0.beta8)

@@ -126,7 +126,7 @@ function initialize_additional_fields()
     <%= f.date_select :event_starting_on %>
   </div><br />
 
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :ending_on %><br />
     <%= f.date_select :event_ending_on %>
   </div><br />
@@ -143,13 +143,35 @@ function initialize_additional_fields()
                      :id=>"textfield" %><br />
   </div><br />
 
+  <div class="field">
+    <%= f.label :street %><br />
+    <%= f.text_field :street, :class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
 
   <div class="styled-select">
     <%= f.label :'Event Type' %><br>
     <%= select(:event, :event_type,
                  ['','Swap','Dinner Party','Collaborative Cooking Event','Potluck']) %>
   </div><br />
-
 
 <div class="field">  
 <table>
@@ -179,9 +201,9 @@ function initialize_additional_fields()
 </div>
 
   <div class="field">
-   <br><p> <%= f.check_box :ev_swap %> Listings enabled but not required
-        <%= f.check_box :ev_swap %> Listings enabled and required
-        <%= f.check_box :ev_swap %> No Listings enabled
+   <br><p> <%= f.check_box :ev_swap %> Listings enabled but not required</p>
+        <%= f.check_box :ev_swap %> Listings enabled and required</p>
+        <%= f.check_box :ev_swap %> No Listings enabled</p>
   </div>
 
   <div class="field">

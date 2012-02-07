@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202111355) do
+ActiveRecord::Schema.define(:version => 20120206085357) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(:version => 20120202111355) do
     t.integer  "location_id"
     t.string   "event_type"
     t.string   "slug"
+    t.string   "street"
+    t.integer  "zip"
+    t.string   "state"
+    t.string   "city"
+    t.string   "country"
   end
 
   create_table "events_listings", :id => false, :force => true do |t|

@@ -80,7 +80,7 @@ function swichtabs(wert) {
        </span>
       </td>
       <td width="95%" align="left" valign="middle">
-        Add Filter by my Food Preferences
+        <a style ="color:white">Add Filter by my Food Preferences</a>
       </td>
     </tr>
    </table>
@@ -90,9 +90,9 @@ function swichtabs(wert) {
   <table width="30%" border="0" cellspacing="0" cellpadding="0">
    <tr>
     <td align="left"><input name="Vegetarian " type="checkbox" value="Vegetarian " /></td>
-    <td align="left">Vegetarian </td>
-    <td align="left"><input name="Gluten free" type="checkbox" value="Gluten free" id="Gluten free" /></td>
-    <td align="left">Gluten free</td>
+    <td align="left" style ="color:white">Vegetarian </td>
+    <td align="left" ><input name="Gluten free" type="checkbox" value="Gluten free" id="Gluten free" /></td>
+    <td align="left" style ="color:white">Gluten free</td>
    </tr>
   </table>
  </div>
@@ -105,13 +105,13 @@ function swichtabs(wert) {
         <img src="/images/plus.gif" />
       </span>
     </td>
-    <td width="95%" align="left" valign="middle">Add Filter by my Groups</td>
+    <td width="95%" align="left" valign="middle" style ="color:white">Add Filter by my Groups</td>
   </tr>
 </table>
 </div>
 
 <div style="display: none;" id="faq2" class="icongroup1">
-   Add Filter by my Groups Lorem ipsum 
+   <a style = "style ="color:white">Add Filter by my Groups Lorem ipsum </a>
 </div>
           
 <div class="eg-bar" "="">
@@ -122,13 +122,13 @@ function swichtabs(wert) {
         <img src="/images/plus.gif" />
       </span>
     </td>
-    <td width="95%" align="left" valign="middle"> Add Filter by my My Locations</td>
+    <td width="95%" align="left" valign="middle" style ="color:white"> Add Filter by my My Locations</td>
   </tr>
 </table>
 </div>
 
 <div style="display: none;" id="faq3" class="icongroup1">
-      Add Filter by my My Locations Lorem ipsum
+     <a style ="color:white"> Add Filter by my My Locations Lorem ipsum</a>
 </div>
 
 <script type="text/javascript">
@@ -225,5 +225,6 @@ faq.init()
       <div class="pagginginarea">
         <a><%= will_paginate @event, :class => 'pagination ajax' %></a>
       </div>
+  </div>
 
 

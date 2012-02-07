@@ -16,7 +16,7 @@
               :method => :post %> | 
 
  <%= link_to "Reject",
-              reject_path(:member_attending_event_register_id => @member_attending_event_register),
+              reject_path(:member_attending_event_register_id => @member_attending_event_register.id),
               :method => :post %>
 
   <% else %>

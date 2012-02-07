@@ -59,7 +59,7 @@ $(document).ready(function() {
 </div>
 
 <div id="tab2" class="tab_content">
- <div><%= gmaps4rails(@json) %></div>
+ <div><%= render :partial => 'map'  %><br></div>
    <div class="tabmenu-contain-main">
      <div class="tabmenu-contain-image">
    </div>
@@ -69,5 +69,11 @@ $(document).ready(function() {
         
  </div>
 </div>
-     
+</body>
 
+<footer>     
+     <%= yield(:scripts) %>
+<%= gmaps4rails(@json) %>
+
+</footer>
+</html>

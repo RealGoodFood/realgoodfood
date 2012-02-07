@@ -1,3 +1,26 @@
+
+<div style ="float:right;font-family:BlackChancery;font-size:15px">
+<% if @event.user_id == current_user.id %>
+ <b>(<%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'List All Events', events_path %> |
+    <%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %>)</b>
+<% else %>
+    <%= link_to 'List All Events', events_path %> 
+<% end %>
+<br><br>
+<b style ="font-size:15px">
+  <%= link_to "I want to Join this Event", event_attendence_event_path(:event_id => @event) %>
+</b>
+
+</div>
+
+
+
+
+<% if @event.photo.exists? then %>
+  <%= image_tag @event.photo.url(:small) %>
+<% end %><br><br><br>
+
 <p>
   <b>Event Type Name:</b>
   <%= @event.event_type %>
@@ -42,8 +65,21 @@
 <b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
 <br /><br />
 
+<style>
+.table
+     { color :black;
+       border:3px solid black;
+     }
+   .table td{
+             border:1px solid green;
+             text-align:center;
+             width :160px;
+            }
+</style>
+
 <% if @event.event_type=="Potluck" %>
-<table border>
+
+<table class = "table">
    <tr>
      <th> Food Name </th>
      <th> Food For People </th>
@@ -56,16 +92,11 @@
      <td><%= p.food_type %></td>
     </tr>
   <% end %>
- </table>
+</table>
 <% end %>
 <br>
-<b><%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'List All Events', events_path %> |
-<%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %></b>
 
-<%= gmaps4rails(@json) %>
+<p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@event.latitude}%2C#{@event.longitude}" %>
+</p>
 
-<% if @event.photo.exists? then %>
-  <%= image_tag @event.photo.url(:small) %>
-<% end %>
-<%= link_to "I want to Join this Event", event_attendence_event_path(:event_id => @event) %>

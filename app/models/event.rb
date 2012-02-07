@@ -24,7 +24,11 @@ class Event < ActiveRecord::Base
        :small    =>    "400x400>"
       }  
 
+   geocoded_by :event_address
 
+def event_address
+  [address,street, city, state, country].compact.join(', ')
+end
 
   acts_as_gmappable
 

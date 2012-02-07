@@ -126,10 +126,10 @@ function initialize_additional_fields()
     <%= f.date_select :event_starting_on %>
   </div><br />
 
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :ending_on %><br />
     <%= f.date_select :event_ending_on %>
-  </div><br />
+  </div><br /> -->
 
   <div class="field">
     <%= f.label :UploadAnImage %><br />
@@ -143,13 +143,35 @@ function initialize_additional_fields()
                      :id=>"textfield" %><br />
   </div><br />
 
+  <div class="field">
+    <%= f.label :street %><br />
+    <%= f.text_field :street, :class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state,:class=>"inner-inputbox-large",
+                     :id=>"textfield" %><br />
+  </div><br />
 
   <div class="styled-select">
     <%= f.label :'Event Type' %><br>
     <%= select(:event, :event_type,
                  ['','Swap','Dinner Party','Collaborative Cooking Event','Potluck']) %>
   </div><br />
-
 
 <div class="field">  
 <table>

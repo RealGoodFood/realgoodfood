@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     <div class="left">
         <a href="/">
-          <img src="images/logo.jpg" width="136" height="123" alt="logo" />
+          <img src="../images/logo.jpg" width="136" height="123" alt="logo" />
         </a>
     </div>
 

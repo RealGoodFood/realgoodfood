@@ -17,15 +17,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :group_type %><br />
-     <select name="group[group_type]">
+    <%= f.hidden_field :group_type , :value =>"public" %>
+<!--     <select name="group[group_type]">
        <option>Public</option>
        <option>Private</option>
-     </select>
+     </select> -->
   </div>
 
   <div class="field">
-    <%= f.label :location %><br />
+    <%= f.label :address %><br />
     <%= f.text_field :location %>
   </div>
 
