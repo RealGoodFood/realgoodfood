@@ -1,4 +1,4 @@
-
+<div style ="background-color:">
 <%= form_for(@listing, :html => {:multipart => true}) do |f| %>
   <% if @listing.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +16,6 @@
     <b><%= f.label :title %></b><br />
     <%= f.text_field :title, 
                      :placeholder=>"food listing name",
-                     :class=>"inner-inputbox-large",
                      :id=>"textfield" %><br />
   </div><br /><br />
 
@@ -38,7 +37,7 @@
 
 
   <div class="field">
-    <b><%= f.label :Listings_Location %></b><br />
+    <b><%= f.label :Listings_address %></b><br />
     <%= f.text_field :location_address,
                      :placeholder=>"Enter listings address",
                      :class=>"inner-inputbox-large",
@@ -136,4 +135,4 @@
   </div>
 
 <% end %>
-
+</div>

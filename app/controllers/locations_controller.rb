@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
 
   def search
     @loc = Location.search params[:search]
-logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+@loc.inspect
   end
 
   def index

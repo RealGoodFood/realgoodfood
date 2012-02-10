@@ -48,7 +48,7 @@ return false;
     </div>
     <div class="logo-inner-right">
 <% unless current_user.profile.nil? %>
-      <div class="signin-top-link">Welcome <b><%= current_user.profile.full_name %></b>&nbsp;
+      <div class="signin-top-link">Welcome ! <b><%= current_user.profile.full_name %></b>&nbsp;
       <a href="/dashboards">| Dashboard</a>
       <a> |&nbsp;<%= link_to "Settings", edit_user_registration_path %></a>
       <a>|&nbsp;<%= link_to "Log out", destroy_user_session_path, :method => :delete %></a>&nbsp;
@@ -70,8 +70,14 @@ return false;
       <div class="right-box-border">
         <div class="right-box-main">
           <div class="user-iconbg">
-<% unless current_user.profile.nil? %>
-              <%= image_tag current_user.profile.photo.url(:profile)  %>
+<% if current_user.profile.nil? %>
+         <%= image_tag("../images/user-icon.jpg") %>
+<% else %>
+      <% unless current_user.profile.photo? %>
+          <%= image_tag("../images/user-icon.jpg") %>
+      <% else %>
+         <%= image_tag current_user.profile.photo.url(:profile)  %>
+<% end %>
 <% end %>
           </div>
 
@@ -161,3 +167,11 @@ return false;
 	}
     </script>
 </html>
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/N6P8vkpbG5yQM8xFRMGVkA.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>

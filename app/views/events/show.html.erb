@@ -62,7 +62,7 @@
   <%= @event.user.profile.full_name %>
 </p>
 
-<b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_ending_on +  50.minute) %></b>
+<b style = color:green><%= distance_of_time_in_words(Time.now, @event.event_starting_on +  50.minute) %></b>
 <br /><br />
 
 <style>

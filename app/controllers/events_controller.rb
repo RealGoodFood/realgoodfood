@@ -4,7 +4,7 @@ before_filter :authenticate_user!
   # GET /events.xml
   def index
     @events = Event.all
-    @json   = Event.find(:all).to_gmaps4rails
+    @json   = Event.all.to_gmaps4rails
     @event  = Event.paginate(:page => params[:page], :per_page => 30)
 
     respond_to do |format|

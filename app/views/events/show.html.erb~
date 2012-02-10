@@ -9,7 +9,7 @@
 <% end %>
 <br><br>
 <b style ="font-size:15px">
-  <%= link_to "I want to Join this Event", event_attendence_event_path(:event_id => @event) %>
+  <%= link_to "I Am Interested", event_attendence_event_path(:event_id => @event) %>
 </b>
 
 </div>

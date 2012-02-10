@@ -70,8 +70,14 @@ return false;
       <div class="right-box-border">
         <div class="right-box-main">
           <div class="user-iconbg">
-<% unless current_user.profile.nil? %>
-              <%= image_tag current_user.profile.photo.url(:profile)  %>
+<% if current_user.profile.nil? %>
+         <%= image_tag("../images/user-icon.jpg") %>
+<% else %>
+      <% unless current_user.profile.photo? %>
+          <%= image_tag("../images/user-icon.jpg") %>
+      <% else %>
+         <%= image_tag current_user.profile.photo.url(:profile)  %>
+<% end %>
 <% end %>
           </div>
 
@@ -112,7 +118,7 @@ return false;
           <%= image_tag e.photo.url(:icon)  %>
            <div style = "margin:-35px -50px 50px 50px;padding-left:10px;text-style:bold">
                 <b><%= e.name %></b><br>
-                <%= time_tag e.event_starting_on %><br>to<br><%= time_tag e.event_ending_on %>  <br>
+                <%= time_tag e.event_starting_on %><br><br>
                 <%=  e.address %>
           </div>
           <hr />
@@ -161,3 +167,11 @@ return false;
 	}
     </script>
 </html>
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/N6P8vkpbG5yQM8xFRMGVkA.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
