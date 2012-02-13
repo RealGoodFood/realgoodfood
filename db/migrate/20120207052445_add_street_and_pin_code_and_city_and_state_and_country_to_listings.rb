@@ -5,11 +5,9 @@ class AddStreetAndPinCodeAndCityAndStateAndCountryToListings < ActiveRecord::Mig
     add_column :listings, :city, :string
     add_column :listings, :country, :string
     add_column :listings, :state, :string
-    add_column :listings, :country, :string
   end
 
   def self.down
-    remove_column :listings, :country
     remove_column :listings, :state
     remove_column :listings, :country
     remove_column :listings, :city

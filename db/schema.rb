@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206085357) do
+ActiveRecord::Schema.define(:version => 20120207052445) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -54,19 +54,23 @@ ActiveRecord::Schema.define(:version => 20120206085357) do
     t.integer  "no_of_guests"
     t.integer  "no_of_guests_attending", :default => 0
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.text     "address"
     t.boolean  "gmaps"
+    t.integer  "event_category_id"
+    t.string   "ev_pot",                 :default => "N/A"
+    t.string   "ev_swap",                :default => "N/A"
+    t.string   "ev_collaborative",       :default => "N/A"
+    t.string   "ev_party",               :default => "N/A"
+    t.integer  "location_id"
+    t.string   "event_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "event_category_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "location_id"
-    t.string   "event_type"
     t.string   "slug"
     t.string   "street"
     t.integer  "zip"
@@ -133,6 +137,11 @@ ActiveRecord::Schema.define(:version => 20120206085357) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.string   "street"
+    t.string   "pin_code"
+    t.string   "city"
+    t.string   "country"
+    t.string   "state"
   end
 
   create_table "listings_values", :id => false, :force => true do |t|
@@ -199,7 +208,7 @@ ActiveRecord::Schema.define(:version => 20120206085357) do
 
   create_table "profiles", :force => true do |t|
     t.string   "full_name"
-    t.integer  "contact_number"
+    t.string   "contact_number"
     t.date     "date_of_birth"
     t.integer  "value_id"
     t.integer  "user_id"
